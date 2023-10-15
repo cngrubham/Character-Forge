@@ -2,5 +2,8 @@
 {% block content %}
 
 <h1>Profile</h1>
-
+<div>
+    <a href="{% url 'update_user' user.id %}">Edit</a>
+    <a href="{% url 'delete_user' user.id %}">Delete</a>
+</div>
 {% endblock %}

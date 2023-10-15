@@ -2,25 +2,28 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Character, User
 from .forms import UserForm, CharacterForm
+from django.urls import reverse
 
 # Define the home view
 def home(request):
-  # Include an .html file extension - unlike when rendering EJS templates
   return render(request, 'home.html')
 
 def user_login(request):
     return render(request, 'user/login.html')
 
-def user_profile(request):
-    return render(request, 'user/profile.html')
+def user_profile(request, user_id):
+    characters = Character.objects.all()
+    # will probably need to change.all to display only specific user characters
+    return render(request, 'user/profile.html', {'characters': characters})
 
 class UserCreate(CreateView):
     model = User
     form_class = UserForm
     template_name = 'main_app/user_form.html'
 
-    def get_success_url(self):
-        return 'user/profile/' 
+    def form_valid(self, form):
+        user = form.save()
+        return redirect(reverse('user_profile', args=[user.id]))
 
 class UserUpdate(UpdateView):
   model = User
@@ -32,13 +35,18 @@ class UserDelete(DeleteView):
 
 def character_detail(request, character_id):
   character = Character.objects.get(id=character_id)
-  character_form = CharacterForm()
   return render(request, 'character/detail.html', {'character': character})
 
 class CharacterCreate(CreateView):
     model = Character
     form_class = CharacterForm
     template_name = 'main_app/character_form.html'
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('user_profile')
 
 class CharacterDelete(DeleteView):
   model = Character
