@@ -11,6 +11,13 @@
     <p>{{ align }}</p>
 
     <p>{{ lang }}</p>
-    <p>{{ traits.name }}</p>
+
+    <h2>Traits:</h2>
+    <ul>
+        {% for trait in traits %}
+            <li>{{ trait.name }}</li>
+        {% endfor %}
+    </ul>
+
 </body>
 </html>
