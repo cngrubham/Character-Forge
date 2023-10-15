@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Character Forge</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div>
+                <ul>
+                    <li><a href="{% url 'home' %}">&nbsp;&nbsp;Character Forge</a></li>
+                </ul>
+                <ul class="right">
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_profile' user_id=user.id %}">Profile</a></li>
+                    <li><a href="{% url 'create_character' %}">Create Character</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Log in</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+</html>

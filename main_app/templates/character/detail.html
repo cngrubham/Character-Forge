@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Character Details</h1>
+<div>
+    <a href="{% url 'update_character' character.id %}">Edit</a>
+    <a href="{% url 'delete_character' character.id %}">Delete</a>
+</div>
+{% endblock %}
