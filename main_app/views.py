@@ -9,18 +9,18 @@ def home(request):
   return render(request, 'home.html')
 
 def user_login(request):
-    return render(request, 'login.html')
+    return render(request, 'user/login.html')
 
 def user_profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'user/profile.html')
 
 class UserCreate(CreateView):
     model = User
     form_class = UserForm
-    template_name = 'add_user.html'
+    template_name = 'main_app/user_form.html'
 
     def get_success_url(self):
-        return '/profile/' 
+        return 'user/profile/' 
 
 class UserUpdate(UpdateView):
   model = User
@@ -38,14 +38,11 @@ def character_detail(request, character_id):
 class CharacterCreate(CreateView):
     model = Character
     form_class = CharacterForm
-    template_name = 'add_character.html'
-
-    def get_success_url(self):
-        return '/profile/' 
+    template_name = 'main_app/character_form.html'
 
 class CharacterDelete(DeleteView):
   model = Character
-  success_url = '/profile'
+  success_url = 'user/profile'
 
 class CharacterUpdate(UpdateView):
   model = Character
