@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Profile</h1>
+<h1>Profile: {{ user.name }}</h1>
 <div>
     <a href="{% url 'update_user' user.id %}">Edit</a>
     <a href="{% url 'delete_user' user.id %}">Delete</a>
 </div>
+
+<h2>Characters Created by {{ user.name }}</h2>
+<ul>
+    {% for character in characters %}
+    <li>
+        <a href="{% url 'detail' character.id %}">{{ character.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'create_character' %}">Create a New Character</a>
+
 {% endblock %}

@@ -4,7 +4,23 @@ from .models import Character, User
 from .forms import UserForm, CharacterForm
 from django.urls import reverse
 import requests
+import random
 
+RACE_CHOICES = (
+    ('Dragonborn', 'https://www.dndbeyond.com/avatars/thumbnails/6/340/420/618/636272677995471928.png'),
+    ('Dwarf', 'https://www.dndbeyond.com/avatars/thumbnails/6/254/420/618/636271781394265550.png'),
+    ('Elf', 'https://www.dndbeyond.com/avatars/thumbnails/7/639/420/618/636287075350739045.png'),
+    ('Gnome', 'https://www.dndbeyond.com/avatars/thumbnails/6/334/420/618/636272671553055253.png'),
+    ('Half-elf', 'https://www.dndbeyond.com/avatars/thumbnails/6/481/420/618/636274618102950794.png'),
+    ('Half-orc', 'https://www.dndbeyond.com/avatars/thumbnails/6/466/420/618/636274570630462055.png'),
+    ('Halfling', 'https://www.dndbeyond.com/avatars/thumbnails/6/256/420/618/636271789409776659.png'),
+    ('Human', 'https://www.dndbeyond.com/avatars/thumbnails/6/258/420/618/636271801914013762.png'),
+    ('Tiefling', 'https://www.dndbeyond.com/avatars/thumbnails/7/641/420/618/636287076637981942.png'),
+)
+
+
+def dice_roll():
+    return random.randint(8, 20)
 
 # Define the home view
 def home(request):
@@ -48,11 +64,28 @@ class CharacterCreate(CreateView):
     form_class = CharacterForm
     template_name = 'main_app/character_form.html'
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+      form.instance.user = self.request.user
+      race = form.get('race')
+      picture_url = [url for name, url in RACE_CHOICES if name == race]
+      if picture_url:
+            picture_url = picture_url[0]  
+      else:
+          picture_url = 'URL_FOR_DEFAULT_IMAGE'
+        
+      form.instance.picURL = picture_url
+        
+        # dice roll stats, may need to change how this is implemented
+      form.instance.strength = dice_roll()
+      form.instance.constitution = dice_roll()
+      form.instance.dexterity = dice_roll()
+      form.instance.charisma = dice_roll()
+      form.instance.wisdom = dice_roll()
+      form.instance.intelligence = dice_roll()
+
+      return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('user_profile')
+            return reverse('user_profile')
 
 class CharacterDelete(DeleteView):
   model = Character
@@ -81,13 +114,30 @@ def races_index(request):
   print(response)
   return render(request, 'characters/races_index.html', {'response':response})
 
-def race(request, race_name):
-  race_name = race_name.lower().replace(" ", "-")
-  response=requests.get(f'https://www.dnd5eapi.co/api/races/{race_name}').json()
-  print(response)
-  name = response.get('name', '')
-  align = response.get('alignment', '')
-  lang = response.get('language_desc', '')
-  traits = response.get('traits', '')
+# def race(request, race_name):
+#   race_name = race_name.lower().replace(" ", "-")
+#   response=requests.get(f'https://www.dnd5eapi.co/api/races/{race_name}').json()
+#   print(response)
+#   name = response.get('name', '')
+#   align = response.get('alignment', '')
+#   lang = response.get('language_desc', '')
+#   traits = response.get('traits', '')
 
-  return render(request, 'characters/race.html', {'name': name, 'align': align, 'lang': lang, 'traits': traits })
+#   return render(request, 'characters/race.html', {'name': name, 'align': align, 'lang': lang, 'traits': traits })
+
+def race(request, race_name):
+    race_name = race_name.lower().replace(" ", "-")
+    picture_url = [url for name, url in RACE_CHOICES if name == race_name]
+    if picture_url:
+        picture_url = picture_url[0]  
+    else:
+        # default if none found
+        picture_url = 'URL_FOR_DEFAULT_IMAGE'
+    
+    response = requests.get(f'https://www.dnd5eapi.co/api/races/{race_name}').json()
+    api_race_name = response.get('name', '')
+    align = response.get('alignment', '')
+    lang = response.get('language_desc', '')
+    traits = response.get('traits', '')
+
+    return render(request, 'characters/race.html', {'name': api_race_name, 'align': align, 'lang': lang, 'traits': traits, 'picture_url': picture_url})

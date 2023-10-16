@@ -9,4 +9,5 @@ class UserForm(ModelForm):
 class CharacterForm(ModelForm):
   class Meta:
     model = Character
-    fields = ['name', 'alignment', 'exp', 'level']
+    fields = ['name', 'race', 'alignment', 'level', 'exp']
+   
