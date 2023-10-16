@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Character, User
-from .forms import UserForm, CharacterForm
-from django.urls import reverse
+from .forms import CharacterForm
+from django.urls import reverse, reverse_lazy
 import requests
 import random
 
@@ -33,67 +33,68 @@ def user_index(request):
     users = User.objects.all()
     return render(request, 'user/user_index.html', {'users': users})
 
-def user_profile(request, user_id):
-    characters = Character.objects.all()
+def user_detail(request, user_id):
+    user = User.objects.get(id=user_id)
+    character_form = CharacterForm()
     # will probably need to change.all to display only specific user characters
-    return render(request, 'user/profile.html', {'characters': characters})
+    return render(request, 'user/user_detail.html', {'character_form': character_form, 'user': user})
 
 class UserCreate(CreateView):
     model = User
-    form_class = UserForm
-    template_name = 'main_app/user_form.html'
-
-    def form_valid(self, form):
-        user = form.save()
-        return redirect(reverse('user_profile', args=[user.id]))
-
+    fields = '__all__'
+   
 class UserUpdate(UpdateView):
   model = User
   fields = '__all__'
 
 class UserDelete(DeleteView):
   model = User
-  success_url = '/'
+  success_url = reverse_lazy('user_index')
+
+
+def character_create(request, user_id):
+    form = CharacterForm(request.POST)
+    if form.is_valid():
+      new_character = form.save(commit=False)
+      new_character.user_id = user_id
+      new_character.save()
+    return redirect('user_detail', user_id=user_id)
+
+
+    #   race = form.get('race')
+    #   picture_url = [url for name, url in RACE_CHOICES if name == race]
+    #   if picture_url:
+    #         picture_url = picture_url[0]  
+    #   else:
+    #       picture_url = 'URL_FOR_DEFAULT_IMAGE'
+        
+    #   form.instance.picURL = picture_url
+        
+    #     # dice roll stats, may need to change how this is implemented
+    #   form.instance.strength = dice_roll()
+    #   form.instance.constitution = dice_roll()
+    #   form.instance.dexterity = dice_roll()
+    #   form.instance.charisma = dice_roll()
+    #   form.instance.wisdom = dice_roll()
+    #   form.instance.intelligence = dice_roll()
+
+    #   return super().form_valid(form)
+
+    # def get_success_url(self):
+    #         return reverse('user_detail')
+
+class CharacterDelete(DeleteView):
+  model = Character
+  success_url = 'user/user_detail'
+
+class CharacterUpdate(UpdateView):
+  model = Character
+  fields = ['name', 'alignment', 'experience', 'level']
 
 def character_detail(request, character_id):
   character = Character.objects.get(id=character_id)
   return render(request, 'character/detail.html', {'character': character})
 
-class CharacterCreate(CreateView):
-    model = Character
-    form_class = CharacterForm
-    template_name = 'main_app/character_form.html'
-    def form_valid(self, form):
-      form.instance.user = self.request.user
-      race = form.get('race')
-      picture_url = [url for name, url in RACE_CHOICES if name == race]
-      if picture_url:
-            picture_url = picture_url[0]  
-      else:
-          picture_url = 'URL_FOR_DEFAULT_IMAGE'
-        
-      form.instance.picURL = picture_url
-        
-        # dice roll stats, may need to change how this is implemented
-      form.instance.strength = dice_roll()
-      form.instance.constitution = dice_roll()
-      form.instance.dexterity = dice_roll()
-      form.instance.charisma = dice_roll()
-      form.instance.wisdom = dice_roll()
-      form.instance.intelligence = dice_roll()
-
-      return super().form_valid(form)
-
-    def get_success_url(self):
-            return reverse('user_profile')
-
-class CharacterDelete(DeleteView):
-  model = Character
-  success_url = 'user/profile'
-
-class CharacterUpdate(UpdateView):
-  model = Character
-  fields = ['name', 'alignment', 'experience', 'level']
 
 def character_demo(request):
   response=requests.get('https://www.dnd5eapi.co/api/alignments').json()

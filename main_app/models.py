@@ -11,7 +11,10 @@ class User(models.Model):
     
     def __str__(self):
         return f'{self.name} ({self.id})'
-
+    
+    def get_absolute_url(self):
+        return reverse('user_detail', kwargs={'user_id': self.id})
+    
 class Character(models.Model):
     name = models.CharField(max_length=100)
     picURL = models.CharField(max_length=500)

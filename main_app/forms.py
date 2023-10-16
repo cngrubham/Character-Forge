@@ -1,10 +1,5 @@
 from django.forms import ModelForm
-from .models import User, Character
-
-class UserForm(ModelForm):
-  class Meta:
-    model = User
-    fields = ['name', 'email', 'password']
+from .models import Character
 
 class CharacterForm(ModelForm):
   class Meta:

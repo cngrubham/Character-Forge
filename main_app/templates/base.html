@@ -23,7 +23,6 @@
                 <ul class="right">
                     <!-- {% if user.is_authenticated %} -->
                     <li><a href="{% url 'user_index' %}">User List</a></li>
-                    <li><a href="{% url 'user_profile' user_id=user.id %}">Profile</a></li>
                     <li><a href="{% url 'create_character' %}">Create Character</a></li>
                     <!-- {% else %} -->
                     <li><a href="{% url 'login' %}">Log in</a></li>
