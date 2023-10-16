@@ -21,12 +21,12 @@
                     <li><a href="{% url 'home' %}">&nbsp;&nbsp;Character Forge</a></li>
                 </ul>
                 <ul class="right">
-                    {% if user.is_authenticated %}
+                    <!-- {% if user.is_authenticated %} -->
                     <li><a href="{% url 'user_profile' user_id=user.id %}">Profile</a></li>
                     <li><a href="{% url 'create_character' %}">Create Character</a></li>
-                    {% else %}
+                    <!-- {% else %} -->
                     <li><a href="{% url 'login' %}">Log in</a></li>
-                    {% endif %}
+                    <!-- {% endif %} -->
                 </ul>
             </div>
         </nav>
