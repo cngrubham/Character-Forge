@@ -2,6 +2,24 @@
 {% block content %}
 
 <h1>Character Details</h1>
+<br>
+
+    <h3>{{ character.name }}</h3>
+    <ul>
+        <li>
+        {{ character.race }}
+    </li>
+    <li>
+        {{ character.alignment }}
+    </li>
+    <li>  
+    {{ character.level }}
+    </li>
+    <li>
+        {{ character.exp }}
+    </li>
+    </ul>
+
 <div>
     <a href="{% url 'update_character' character.id %}">Edit</a>
     <a href="{% url 'delete_character' character.id %}">Delete</a>

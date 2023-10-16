@@ -10,7 +10,20 @@
 <form action="" method="post">
     {% csrf_token %}
     <table>
-        {{ form.as_table }}
+        {{ form.name.label_tag }} {{ form.name }}
+        {{ form.alignment.label_tag }} {{ form.alignment }}
+        {{ form.level.label_tag }} {{ form.level }}
+        {{ form.exp.label_tag }} {{ form.exp }}
+        <tr>
+            <th><label for="{{ form.race.id_for_label }}">Race:</label></th>
+            <td>
+                <select name="{{ form.race.name }}" id="{{ form.race.id_for_label }}">
+                    {% for race, image_url in form.race.field.choices %}
+                        <option value="{{ race }}">{{ race }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
     </table>
     <input type="submit" value="Submit!" class="btn">
 
