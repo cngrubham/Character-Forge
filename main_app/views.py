@@ -13,6 +13,10 @@ def home(request):
 def user_login(request):
     return render(request, 'user/login.html')
 
+def user_index(request):
+    users = User.objects.all()
+    return render(request, 'user/user_index.html', {'users': users})
+
 def user_profile(request, user_id):
     characters = Character.objects.all()
     # will probably need to change.all to display only specific user characters
