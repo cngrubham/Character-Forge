@@ -4,11 +4,19 @@ from django.urls import reverse
 # Create your models here.
 
 FACTION_CHOICES = (
-    ('https://www.dndbeyond.com/attachments/thumbnails/5/924/290/504/br-harpers.png', 'Harpers'),
-    ('https://www.dndbeyond.com/attachments/thumbnails/5/928/290/504/br-orderofthegauntlet.png', 'Order of the Gauntlet'),
-    ('https://www.dndbeyond.com/attachments/thumbnails/5/925/290/504/br-emeraldenclave.png', 'Emerald Enclave'),
-    ('https://www.dndbeyond.com/attachments/thumbnails/5/926/290/504/br-lordsalliance.png', 'Lord''s Alliance'),
-    ('https://www.dndbeyond.com/attachments/thumbnails/5/927/290/504/br-zhentarim.png', 'Zhentarim')
+    ('Harpers', 'Harpers'),
+    ('Order of the Gauntlet', 'Order of the Gauntlet'),
+    ('Emerald Enclave', 'Emerald Enclave'),
+    ('Lord''s Alliance', 'Lord''s Alliance'),
+    ('Zhentarim', 'Zhentarim')
+)
+
+FACTION_URLS = (
+    ('Harpers', 'https://www.dndbeyond.com/avatars/thumbnails/6/340/420/618/636272677995471928.png'),
+    ('Order of the Gauntlet', 'https://www.dndbeyond.com/attachments/thumbnails/5/928/290/504/br-orderofthegauntlet.png'),
+    ('Emerald Enclave', 'https://www.dndbeyond.com/attachments/thumbnails/5/925/290/504/br-emeraldenclave.png'),
+    ('Lord''s Alliance', 'https://www.dndbeyond.com/attachments/thumbnails/5/926/290/504/br-lordsalliance.png'),
+    ('Zhentarim', 'https://www.dndbeyond.com/attachments/thumbnails/5/927/290/504/br-zhentarim.png')
 )
 
 class User(models.Model):
@@ -16,7 +24,7 @@ class User(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=20)
     avatar = models.CharField(
-        max_length=100,
+        max_length=25,
         choices=FACTION_CHOICES,
         default=FACTION_CHOICES[0][0])
     
