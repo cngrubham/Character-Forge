@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+# from django.views.generic import views
 from .models import Character, User
-from .forms import CharacterForm
+from .forms import CharacterForm, UserForm
 from django.urls import reverse, reverse_lazy
 import requests
 import random
@@ -38,9 +39,18 @@ def user_detail(request, user_id):
     # will probably need to change.all to display only specific user characters
     return render(request, 'user/user_detail.html', {'character_form': character_form, 'user': user})
 
+# class UserCreate(views.View):
+#     template_name = 'user/user_create.html'
+#     get(req, res)
+
 class UserCreate(CreateView):
+    # Trying to set model attribute to UserForm ModelForm,
+    # instead of User model.
     model = User
-    fields = '__all__'
+    form_class = UserForm
+    # fields = '__all__'
+    template_name = 'user/user_create.html'
+    success_url = ''
    
 class UserUpdate(UpdateView):
   model = User
