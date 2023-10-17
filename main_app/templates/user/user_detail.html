@@ -9,13 +9,16 @@
 
 <h2>Characters Created by {{ user.name }}</h2>
 <ul>
-    {% for character in characters %}
+    {% for character in user.character_set.all %}
     <li>
-        <a href="{% url 'detail' character.id %}">{{ character.name }}</a>
-    </li>
+        <a href="{% url 'detail' character.id %}">{{ character.name }} - {{ character.race }}</a>
+       
+            
+    
+   
     {% endfor %}
 </ul>
 
-<a href="{% url 'create_character' %}">Create a New Character</a>
+<a href="{% url 'character_create' user_id=user.id %}">Create a New Character</a>
 
 {% endblock %}
