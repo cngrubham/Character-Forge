@@ -88,7 +88,8 @@ class CharacterUpdate(UpdateView):
 
 def character_detail(request, character_id):
   character = Character.objects.get(id=character_id)
-  return render(request, 'character/detail.html', {'character': character})
+  form = CharacterForm()
+  return render(request, 'character/detail.html', {'character': character, 'form': form})
 
 
 def character_demo(request):

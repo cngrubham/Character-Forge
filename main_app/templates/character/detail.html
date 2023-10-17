@@ -4,21 +4,32 @@
 <h1>Character Details</h1>
 <br>
 
-    <h3>{{ character.name }}</h3>
-    <ul>
-        <li>
+<h3>{{ character.name }}</h3>
+
+{% load static %}
+
+<ul>
+    <li>
+        {% for image_path, race in form.race.field.choices %}
+            {% if character.race == race %}
+                <img src="{% static image_path %}" alt="{{ race }}" width="100" height="100">
+            {% endif %}
+        </li>
+    {% endfor %}
+    </li>
+    <li>
         {{ character.race }}
     </li>
     <li>
         {{ character.alignment }}
     </li>
     <li>  
-    {{ character.level }}
+        {{ character.level }}
     </li>
     <li>
         {{ character.exp }}
     </li>
-    </ul>
+</ul>
 
 <div>
     <a href="{% url 'update_character' character.id %}">Edit</a>
