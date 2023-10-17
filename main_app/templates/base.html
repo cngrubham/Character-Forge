@@ -10,22 +10,34 @@
     <title>Character Forge</title>
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
 
+    <style>
+        body {
+            /* background: url('{% static "images/.jpg" %}'); */
+            background-color: #2F3B47;
+            background: radial-gradient(circle, #364757, #1B1E22);
+            background-repeat: repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <body>
     <header>
-        <nav>
+        <nav class="navbar-fixed" style="background-color: rgb(69, 24, 24);">
             <div>
                 <ul>
                     <li><a href="{% url 'home' %}">Character Forge</a></li>
                 </ul>
                 <ul class="right">
-                    <!-- {% if user.is_authenticated %} -->
+
                     <li><a href="{% url 'user_index' %}">User List</a></li>
-                    <!-- {% else %} -->
-                    <li><a href="{% url 'login' %}">Log in</a></li>
-                    <!-- {% endif %} -->
+                    <li><a href="{% url 'create_user' %}">New User</a></li>
+
                 </ul>
             </div>
         </nav>
@@ -35,8 +47,13 @@
         {% endblock %}
     </main>
     <footer>
-
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                M.AutoInit();
+            });
+        </script>
     </footer>
+
 </body>
 
 </html>
