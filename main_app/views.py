@@ -50,7 +50,10 @@ class UserCreate(CreateView):
     form_class = UserForm
     # fields = '__all__'
     template_name = 'user/user_create.html'
-    success_url = ''
+    # success_url = ''
+
+    def get_success_url(self):
+       return reverse('user_detail', args=[self.object.id])
    
 class UserUpdate(UpdateView):
   model = User
