@@ -53,12 +53,20 @@ class UserDelete(DeleteView):
 
 
 def character_create(request, user_id):
-    form = CharacterForm(request.POST)
-    if form.is_valid():
-      new_character = form.save(commit=False)
-      new_character.user_id = user_id
-      new_character.save()
-    return redirect('user_detail', user_id=user_id)
+    if request.method == 'POST':
+        form = CharacterForm(request.POST)
+        if form.is_valid():
+            character = form.save(commit=False)
+            character.race = form.cleaned_data['race']
+            character.user_id = user_id
+            print("Form is valid")
+            character.save()
+            return redirect('detail', character_id=character.id)
+    else:
+        form = CharacterForm()
+
+    return render(request, 'main_app/character_form.html', {'form': form, 'user_id': user_id})
+
 
 
     #   race = form.get('race')
