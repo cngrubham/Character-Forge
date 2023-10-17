@@ -28,7 +28,7 @@
             <td>
                 <select name="{{ form.avatar.name }}" id="id_{{ form.avatar.name }}">
                     {% for choice in form.avatar.field.choices %}
-                        <option value="{{choice.0}}">{{ choice.1 }}</option>
+                        <option value="{{choice.0}}" {% if choice.1 == form.avatar.value %}selected{% endif %}>{{ choice.1 }}</option>
                     {% endfor %}
                 </select>
             </td>
