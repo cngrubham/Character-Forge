@@ -52,6 +52,10 @@ class UserCreate(CreateView):
     template_name = 'main_app/user_form.html'
     # success_url = ''
 
+    # def form_valid(self, form):
+    #   form.save()
+    #   return super().form_valid(form)
+
     def get_success_url(self):
        return reverse('user_detail', args=[self.object.id])
    
