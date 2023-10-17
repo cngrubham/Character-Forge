@@ -10,6 +10,7 @@
     <title>Character Forge</title>
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
 </head>
 
@@ -21,12 +22,10 @@
                     <li><a href="{% url 'home' %}">Character Forge</a></li>
                 </ul>
                 <ul class="right">
-                    <!-- {% if user.is_authenticated %} -->
                     <li><a href="{% url 'user_index' %}">User List</a></li>
                     <li><a href="{% url 'create_character' %}">Create Character</a></li>
-                    <!-- {% else %} -->
-                    <li><a href="{% url 'login' %}">Log in</a></li>
-                    <!-- {% endif %} -->
+                    <li><a href="{% url 'create_user' %}">New User</a></li>
+
                 </ul>
             </div>
         </nav>
@@ -38,6 +37,11 @@
     <footer>
 
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.AutoInit();
+        });
+    </script>
 </body>
 
 </html>
