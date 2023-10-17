@@ -12,7 +12,7 @@ FACTION_CHOICES = (
 )
 
 FACTION_URLS = (
-    ('Harpers', 'https://www.dndbeyond.com/avatars/thumbnails/6/340/420/618/636272677995471928.png'),
+    ('Harpers', 'https://www.dndbeyond.com/attachments/thumbnails/5/924/290/504/br-harpers.png'),
     ('Order of the Gauntlet', 'https://www.dndbeyond.com/attachments/thumbnails/5/928/290/504/br-orderofthegauntlet.png'),
     ('Emerald Enclave', 'https://www.dndbeyond.com/attachments/thumbnails/5/925/290/504/br-emeraldenclave.png'),
     ('Lord''s Alliance', 'https://www.dndbeyond.com/attachments/thumbnails/5/926/290/504/br-lordsalliance.png'),

@@ -34,8 +34,53 @@
             </td>
         </tr>       
     </table>
-
+    <br>
     <input type="submit" value="Submit!" class="btn">
+    <br>
+    
+    {% for faction, url in faction_urls %}
+        <div>
+            <img src="{{ url }}" alt="{{ faction }}" style="display: none">
+        </div>
+    {% endfor %}
+
 </form>
+
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        var dropdown = document.getElementById('id_avatar'); 
+        var selectedValue = dropdown.value;
+
+        console.log(selectedValue);
+
+        // Hide all images initially
+        document.querySelectorAll('img').forEach(function(img) {
+            img.style.display = 'none';
+        });
+
+        // Show the image with the matching alt value
+        var matchingImage = document.querySelector('img[alt="' + selectedValue + '"]');
+        
+        if (matchingImage) {
+            matchingImage.style.display = 'block';
+        }
+    
+    });
+
+    document.querySelector('#id_avatar').addEventListener('change', function() {
+        // Get the selected value
+        var selectedValue = this.value;
+    
+        // Hide all images initially
+        document.querySelectorAll('img').forEach(function(img) {
+            img.style.display = 'none';
+        });
+    
+        // Show the image with the matching value
+        document.querySelector('img[alt="' + selectedValue + '"]').style.display = 'block';
+    });
+
+</script>
 
 {% endblock %}
