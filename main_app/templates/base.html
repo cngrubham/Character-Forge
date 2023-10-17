@@ -9,12 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Character Forge</title>
 
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
-
+    <link rel="icon" type="image/x-icon" href="{% static 'images/d20.png' %}">
     <style>
         body {
             /* background: url('{% static "images/.jpg" %}'); */
@@ -47,12 +47,13 @@
         {% endblock %}
     </main>
     <footer>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                M.AutoInit();
-            });
-        </script>
+        <!-- <div class="footer-copyright" style="background-color: rgb(69, 24, 24);" class="right">All Rights Reserved, &copy; Character Forge &nbsp;</div> -->
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.AutoInit();
+        });
+    </script>
 
 </body>
 
