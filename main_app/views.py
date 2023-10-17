@@ -49,7 +49,7 @@ class UserCreate(CreateView):
     model = User
     form_class = UserForm
     # fields = '__all__'
-    template_name = 'user/user_create.html'
+    template_name = 'main_app/user_form.html'
     # success_url = ''
 
     def get_success_url(self):
