@@ -3,11 +3,22 @@ from django.urls import reverse
 
 # Create your models here.
 
+FACTION_CHOICES = (
+    ('https://www.dndbeyond.com/attachments/thumbnails/5/924/290/504/br-harpers.png', 'Harpers'),
+    ('https://www.dndbeyond.com/attachments/thumbnails/5/928/290/504/br-orderofthegauntlet.png', 'Order of the Gauntlet'),
+    ('https://www.dndbeyond.com/attachments/thumbnails/5/925/290/504/br-emeraldenclave.png', 'Emerald Enclave'),
+    ('https://www.dndbeyond.com/attachments/thumbnails/5/926/290/504/br-lordsalliance.png', 'Lord''s Alliance'),
+    ('https://www.dndbeyond.com/attachments/thumbnails/5/927/290/504/br-zhentarim.png', 'Zhentarim')
+)
+
 class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     password = models.CharField(max_length=20)
-    avatar = models.CharField(max_length=100)
+    avatar = models.CharField(
+        max_length=100,
+        choices=FACTION_CHOICES,
+        default=FACTION_CHOICES[0][0])
     
     def __str__(self):
         return f'{self.name} ({self.id})'

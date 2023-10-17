@@ -18,7 +18,6 @@ RACE_CHOICES = (
     ('Tiefling', 'https://www.dndbeyond.com/avatars/thumbnails/7/641/420/618/636287076637981942.png'),
 )
 
-
 def dice_roll():
     return random.randint(8, 20)
 
