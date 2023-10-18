@@ -1,34 +1,51 @@
 from django.forms import ModelForm
 from .models import Character
 from django import forms
+import requests
 
-RACE_CHOICES = (
-    ('images/dragonborn.png', 'Dragonborn-M'),
-    ('images/dragonborn-female.jpeg', 'Dragonborn-F'),
-    ('images/Dwarf.webp', 'Dwarf-M'),
-    ('images/dwarf-female.png', 'Dwarf-F'),
-    ('images/elf-male.webp', 'Elf-M'),
-    ('images/elf.png', 'Elf-F'),
-    ('images/gnome.webp', 'Gnome-M'),
-    ('images/gnome-female.jpeg', 'Gnome-F'),
-    ('images/half-elf.jpeg', 'Half-elf-M'),
-    ('images/half-elf.jpeg', 'Half-elf-F'),
-    ('images/Half_Orc_male.webp', 'Half-orc-M'),
-    ('images/half-orc-female.jpeg', 'Half-orc-F'),
-    ('images/halfling-male.png', 'Halfling-M'),
-    ('images/halfling_female.jpeg', 'Halfling-F'),
-    ('images/human_male.jpeg', 'Human-M'),
-    ('images/human-female.png', 'Human-F'),
-    ('images/tiefling-male.jpeg', 'Tiefling-M'),
-    ('images/tiefling-female.jpeg', 'Tiefling-F'),
+GENDER_CHOICES = (
+    ('Dragonborn-M', 'Dragonborn-M'),
+    ('Dragonborn-F', 'Dragonborn-F'),
+    ('Dwarf-M', 'Dwarf-M'),
+    ('Dwarf-F', 'Dwarf-F'),
+    ('Elf-M', 'Elf-M'),
+    ('Elf-F', 'Elf-F'),
+    ('Gnome-M', 'Gnome-M'),
+    ('Gnome-F', 'Gnome-F'),
+    ('Half-elf-M', 'Half-elf-M'),
+    ('Half-elf-F', 'Half-elf-F'),
+    ('Half-orc-M', 'Half-orc-M'),
+    ('Half-orc-F', 'Half-orc-F'),
+    ('Halfling-M', 'Halfling-M'),
+    ('Halfling-F', 'Halfling-F'),
+    ('Human-M', 'Human-M'),
+    ('Human-F', 'Human-F'),
+    ('Tiefling-M', 'Tiefling-M'),
+    ('Tiefling-F', 'Tiefling-F'),
 )
 
 
 
+
 class CharacterForm(ModelForm):
-  # race = forms.ChoiceField(choices=RACE_CHOICES, widget=forms.Select)
+
+  gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.Select)
+  race = forms.ChoiceField(widget=forms.Select)
+  alignment = forms.ChoiceField(widget=forms.Select)
   class Meta:
-    model = Character
-    fields = ['name', 'alignment', 'level', 'exp']
-    # 'race', DONT FORGET TO ADD RACE FIELD BACK IN
-   
+      model = Character
+      fields = ['name', 'gender', 'race', 'alignment', 'level', 'exp']
+
+  def __init__(self, *args, **kwargs):
+      super(CharacterForm, self).__init__(*args, **kwargs)
+
+      # Fetch race choices from the API
+      response = requests.get('https://www.dnd5eapi.co/api/races').json()
+      races = [(race['name'], race['name']) for race in response.get('results', [])]
+      
+      response = requests.get('https://www.dnd5eapi.co/api/alignments').json()
+      alignments = [(alignment['name'], alignment['name']) for alignment in response.get('results', [])]
+      # Set the choices for the 'race' field
+      self.fields['race'].choices = races
+      self.fields['alignment'].choices = alignments
+
