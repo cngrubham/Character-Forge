@@ -69,6 +69,11 @@ class UserUpdate(UpdateView):
   model = User
   fields = '__all__'
 
+  def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs)
+        context['faction_urls'] = FACTION_URLS
+        return context
+
 class UserDelete(DeleteView):
   model = User
   success_url = reverse_lazy('user_index')
