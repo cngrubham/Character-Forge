@@ -12,11 +12,83 @@
         <div class="card-content">
             <form action="" method="POST">
                 {% csrf_token %}
-                <table>
-                    {{ form.as_table }}
+                
+    <table>
+        <tr>
+            <td><label for="{{ form.name.id_for_label }}" class="form-label">{{ form.name.name|capfirst }}:</label></td>
+            <td>{{ form.name }}</td>
+        </tr>
+        <tr>
+            <td><label for="id_{{ form.email.name }}" class="form-label">{{ form.email.name|capfirst }}:</label></td>
+            <td>{{ form.email }}</td>
+        </tr>
+        <tr>
+            <td><label for="id_{{ form.password.name }}" class="form-label">{{ form.password.name|capfirst }}:</label></td>
+            {% if object %}
+                <td><input type="password" name="{{ form.password.name }}" id="{{ form.password.id }}" value="{{ form.password.value }}"></tr></td>
+            {% else %}
+                <td>{{ form.password }}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td><label for="id_{{ form.avatar.name }}" class="form-label">{{ form.avatar.name|capfirst }}:</label></td>
+            <td>
+                <select name="{{ form.avatar.name }}" id="id_{{ form.avatar.name }}">
+                    {% for choice in form.avatar.field.choices %}
+                        <option value="{{choice.0}}" {% if choice.1 == form.avatar.value %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>       
                 </table>
-                <input type="submit" value="Submit!" class="btn waves-effect waves-light red accent-4">
-            </form>
+                <br>
+    <input type="submit" value="Submit!" class="btn waves-effect waves-light red accent-4">
+                <br>
+    
+    {% for faction, url in faction_urls %}
+        <div>
+            <img src="{{ url }}" alt="{{ faction }}" style="display: none">
+        </div>
+    {% endfor %}
+
+</form>
+
+<script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        var dropdown = document.getElementById('id_avatar'); 
+        var selectedValue = dropdown.value;
+
+        console.log(selectedValue);
+
+        // Hide all images initially
+        document.querySelectorAll('img').forEach(function(img) {
+            img.style.display = 'none';
+        });
+
+        // Show the image with the matching alt value
+        var matchingImage = document.querySelector('img[alt="' + selectedValue + '"]');
+        
+        if (matchingImage) {
+            matchingImage.style.display = 'block';
+        }
+    
+    });
+
+    document.querySelector('#id_avatar').addEventListener('change', function() {
+        // Get the selected value
+        var selectedValue = this.value;
+    
+        // Hide all images initially
+        document.querySelectorAll('img').forEach(function(img) {
+            img.style.display = 'none';
+        });
+    
+        // Show the image with the matching value
+        document.querySelector('img[alt="' + selectedValue + '"]').style.display = 'block';
+    });
+
+</script>
 
         </div>
     </div>

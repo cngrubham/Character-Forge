@@ -1,5 +1,6 @@
-from django.forms import ModelForm
-from .models import Character
+from django.forms import ModelForm, forms
+from .models import Character, User, FACTION_CHOICES
+from django.forms.widgets import Select, PasswordInput
 from django import forms
 import requests
 
@@ -49,3 +50,13 @@ class CharacterForm(ModelForm):
       self.fields['race'].choices = races
       self.fields['alignment'].choices = alignments
 
+
+# Create ModelForm for use in UserCreate route
+class UserForm(ModelForm):
+  class Meta:
+    model = User
+    fields = "__all__"
+    widgets = {
+      'avatar': Select(choices=FACTION_CHOICES),
+      'password': PasswordInput(),
+    }
