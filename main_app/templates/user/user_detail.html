@@ -5,7 +5,8 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <h1 class="center-align" style="font-size: 3rem">Profile: {{ user.name }}</h1>
+                    <h1 class="center-align" style="font-size: 3rem; font-family: 'Philosopher', sans-serif;">Profile:
+                        {{ user.name }}</h1>
                     <div>
                         <a class="btn grey" href="{% url 'update_user' user.id %}">Edit</a>
                         <a class="btn grey" href="{% url 'delete_user' user.id %}">Delete</a>
@@ -15,13 +16,15 @@
         </div>
         <div class="col s12 m6">
             <a class="btn waves-effect waves-light red accent-4"
-                href="{% url 'character_create' user_id=user.id %}">Create a New Character</a>
-            <h2 class="center-align white-text" style="font-size: 3rem; font-family: 'MedievalSharp', cursive;">
+                href="{% url 'character_create' user_id=user.id %}">Create
+                a New Character</a>
+            <h2 class="center-align white-text" style="font-size: 3rem; font-family: 'Philosopher', sans-serif;">
                 Characters Created by {{ user.name }}</h2>
             <ul class="collection">
                 {% for character in user.character_set.all %}
                 <li class="collection-item">
-                    <a href="{% url 'detail' character.id %}">{{ character.name }} - {{ character.race }}</a>
+                    <a href="{% url 'detail' character.id %}" style="font-family: 'Philosopher', sans-serif;">
+                        {{ character.name }} - {{ character.race }}</a>
                 </li>
                 {% endfor %}
             </ul>
