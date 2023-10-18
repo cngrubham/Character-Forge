@@ -22,7 +22,7 @@
         <tr>
             <td><label for="id_{{ form.password.name }}" class="form-label">{{ form.password.name|capfirst }}:</label></td>
             {% if object %}
-                <td><input type="password" name="{{ form.password.name }}" id="{{ form.password.id }}" value=""></tr></td>
+                <td><input type="password" name="{{ form.password.name }}" id="{{ form.password.id }}" value="{{ form.password.value }}"></tr></td>
             {% else %}
                 <td>{{ form.password }}</td>
             {% endif %}
