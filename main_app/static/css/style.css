@@ -1,3 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #2F3B47;
+    background: radial-gradient(circle, #364757, #1B1E22);
+    background-repeat: repeat;
+    background-size: cover;
+}
+.navbar {
+    background-color: rgb(69, 24, 24);
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.navbar ul:first-child {
+    float: left;
+}
+
+.navbar ul:not(:first-child) {
+    float: right;
+}
+.navbar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.navbar li {
+    display: inline;
+    margin: 0 20px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+}
+
 .dice-container {
     height: 200px;
     text-align: center;
@@ -39,10 +75,6 @@
     animation: rotate-center 5s linear infinite both;
     margin-top: 40px;
 }
-
-/* .spin:hover {
-    animation-play-state: paused;
-} */
 
 @keyframes spin {
     0% {

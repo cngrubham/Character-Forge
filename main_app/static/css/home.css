@@ -1,0 +1,50 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.page-title {
+    font-size: 5.5rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    color: white;
+}
+
+.page-container h3 {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.page-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.page-container li {
+    margin-bottom: 10px;
+}
+
+.page-container a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 800px) {
+    .page-title {
+        font-size: 3rem;
+    }
+
+    .page-container h3 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,56 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-    <!-- Your HTML content here -->
+<!-- Your HTML content here -->
 
 <div class="char-form-container container">
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Save" class="btn">
-                <div class="dice-container">
-                <p>Roll the dice for your character stats!</p>
-                <div class="center-align-dice">
-                    <img src="{% static 'images/d20.png' %}" alt="Generate Stats" id="generate-stats"
-                        class="responsive-img" style="cursor: pointer; width: 100px; height: 100px;">
-                </div>
+        <!-- <input type="submit" value="Save" class="btn"> -->
+        <div class="dice-container">
+            <p>Roll the dice for your character stats!</p>
+            <div class="center-align-dice">
+                <img src="{% static 'images/d20.png' %}" alt="Generate Stats" id="generate-stats" class="responsive-img"
+                    style="cursor: pointer; width: 100px; height: 100px;">
             </div>
-            <tr>
-                <th>Strength:</th>
-                <td>
-                    <input type="text" name="{{ form.strength.name }}" id="id_strength">
-                </td>
-            </tr>
-            <tr>
-                <th>Constitution:</th>
-                <td>
-                    <input type="text" name="{{ form.constitution.name }}" id="id_constitution">
-                </td>
-            </tr>
-            <tr>
-                <th>Dexterity:</th>
-                <td>
-                    <input type="text" name="{{ form.dexterity.name }}" id="id_dexterity">
-                </td>
-            </tr>
-            <tr>
-                <th>Charisma:</th>
-                <td>
-                    <input type="text" name="{{ form.charisma.name }}" id="id_charisma">
-                </td>
-            </tr>
-            <tr>
-                <th>Wisdom:</th>
-                <td>
-                    <input type="text" name="{{ form.wisdom.name }}" id="id_wisdom">
-                </td>
-            </tr>
-            <tr>
-                <th>Intelligence:</th>
-                <td>
-                    <input type="text" name="{{ form.intelligence.name }}" id="id_intelligence">
-                </td>
-            </tr>
+        </div>
         </table>
 
 
@@ -58,104 +22,102 @@
 
     </form>
 </div>
-    <p id="alignment-name"></p>
-    <p id="alignment-desc"></p>
-    <p id="race-name"></p>
-    <p id="race-align"></p>
-    <p id="race-lang"></p>
-    <p id="race-traits"></p>
-    
-    <script>
- document.addEventListener("DOMContentLoaded", function () {
-  function getRandomStat() {
+<p id="alignment-name"></p>
+<p id="alignment-desc"></p>
+<p id="race-name"></p>
+<p id="race-align"></p>
+<p id="race-lang"></p>
+<p id="race-traits"></p>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function getRandomStat() {
             return Math.floor(Math.random() * 13) + 8;
         }
-    
-    let generateStatsButton = document.getElementById("generate-stats");
 
-    generateStatsButton.addEventListener("click", function () {
+        let generateStatsButton = document.getElementById("generate-stats");
 
-        generateStatsButton.classList.add("spin");
+        generateStatsButton.addEventListener("click", function () {
 
-        let strength = getRandomStat();
-        let constitution = getRandomStat();
-        let dexterity = getRandomStat();
-        let charisma = getRandomStat();
-        let wisdom = getRandomStat();
-        let intelligence = getRandomStat();
+            generateStatsButton.classList.add("spin");
 
-        document.getElementById("id_strength").value = strength;
-        document.getElementById("id_constitution").value = constitution;
-        document.getElementById("id_dexterity").value = dexterity;
-        document.getElementById("id_charisma").value = charisma;
-        document.getElementById("id_wisdom").value = wisdom;
-        document.getElementById("id_intelligence").value = intelligence;
+            let strength = getRandomStat();
+            let constitution = getRandomStat();
+            let dexterity = getRandomStat();
+            let charisma = getRandomStat();
+            let wisdom = getRandomStat();
+            let intelligence = getRandomStat();
 
-        setTimeout(function () {
-            generateStatsButton.classList.remove("spin");
-        }, 3000);
-    });
-});
-        document.addEventListener("DOMContentLoaded", function() {
-            const alignmentDropdown = document.querySelector("#id_alignment");
-            const raceDropdown = document.querySelector("#id_race"); // Select the race dropdown
-    
-            alignmentDropdown.addEventListener("change", function() {
-                const selectedAlignment = this.value;
-                fetchAlignmentData(selectedAlignment);
-            });
-    
-            raceDropdown.addEventListener("change", function() {
-                const selectedRace = this.value;
-                fetchRaceData(selectedRace);
-            });
-    
-            function fetchAlignmentData(alignment_name) {
-                console.log("Fetching alignment data...");
-                alignment_name = alignment_name.toLowerCase().replace(" ", "-");
-                const url = `https://www.dnd5eapi.co/api/alignments/${alignment_name}`;
-    
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        const alignmentNameElement = document.querySelector("#alignment-name");
-                        const alignmentDescElement = document.querySelector("#alignment-desc");
-    
-                        alignmentNameElement.textContent = data.name;
-                        alignmentDescElement.textContent = data.desc;
-                    })
-                    .catch(error => {
-                        console.error("Error fetching alignment data: ", error);
-                    });
-            }
-    
-            function fetchRaceData(race_name) {
-                console.log("Fetching race data...");
-                race_name = race_name.toLowerCase().replace(" ", "-");
-                const url = `https://www.dnd5eapi.co/api/races/${race_name}`;
-    
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        const raceNameElement = document.querySelector("#race-name");
-                        const raceAlignElement = document.querySelector("#race-align");
-                        const raceLangElement = document.querySelector("#race-lang");
-                        const raceTraitsElement = document.querySelector("#race-traits");
-    
-                        raceNameElement.textContent = data.name;
-                        raceAlignElement.textContent = data.alignment;
-                        raceLangElement.textContent = data.language_desc;
-                        raceTraitsElement.textContent = data.traits.name;
-                        const traits = data.traits.map(trait => trait.name);
-                        raceTraitsElement.textContent = traits.join(', '); // Display traits as a comma-separated list
-                    })
-                    .catch(error => {
-                        console.error("Error fetching race data: ", error);
-                    });
-            }
+            document.getElementById("id_strength").value = strength;
+            document.getElementById("id_constitution").value = constitution;
+            document.getElementById("id_dexterity").value = dexterity;
+            document.getElementById("id_charisma").value = charisma;
+            document.getElementById("id_wisdom").value = wisdom;
+            document.getElementById("id_intelligence").value = intelligence;
+
+            setTimeout(function () {
+                generateStatsButton.classList.remove("spin");
+            }, 3000);
         });
-    </script>
-    
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const alignmentDropdown = document.querySelector("#id_alignment");
+        const raceDropdown = document.querySelector("#id_race"); // Select the race dropdown
+
+        alignmentDropdown.addEventListener("change", function () {
+            const selectedAlignment = this.value;
+            fetchAlignmentData(selectedAlignment);
+        });
+
+        raceDropdown.addEventListener("change", function () {
+            const selectedRace = this.value;
+            fetchRaceData(selectedRace);
+        });
+
+        function fetchAlignmentData(alignment_name) {
+            console.log("Fetching alignment data...");
+            alignment_name = alignment_name.toLowerCase().replace(" ", "-");
+            const url = `https://www.dnd5eapi.co/api/alignments/${alignment_name}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const alignmentNameElement = document.querySelector("#alignment-name");
+                    const alignmentDescElement = document.querySelector("#alignment-desc");
+
+                    alignmentNameElement.textContent = data.name;
+                    alignmentDescElement.textContent = data.desc;
+                })
+                .catch(error => {
+                    console.error("Error fetching alignment data: ", error);
+                });
+        }
+
+        function fetchRaceData(race_name) {
+            console.log("Fetching race data...");
+            race_name = race_name.toLowerCase().replace(" ", "-");
+            const url = `https://www.dnd5eapi.co/api/races/${race_name}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const raceNameElement = document.querySelector("#race-name");
+                    const raceAlignElement = document.querySelector("#race-align");
+                    const raceLangElement = document.querySelector("#race-lang");
+                    const raceTraitsElement = document.querySelector("#race-traits");
+
+                    raceNameElement.textContent = data.name;
+                    raceAlignElement.textContent = data.alignment;
+                    raceLangElement.textContent = data.language_desc;
+                    raceTraitsElement.textContent = data.traits.name;
+                    const traits = data.traits.map(trait => trait.name);
+                    raceTraitsElement.textContent = traits.join(', '); // Display traits as a comma-separated list
+                })
+                .catch(error => {
+                    console.error("Error fetching race data: ", error);
+                });
+        }
+    });
+</script>
+
 {% endblock %}
-
-
