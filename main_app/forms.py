@@ -26,8 +26,9 @@ RACE_CHOICES = (
 
 
 class CharacterForm(ModelForm):
-  race = forms.ChoiceField(choices=RACE_CHOICES, widget=forms.Select)
+  # race = forms.ChoiceField(choices=RACE_CHOICES, widget=forms.Select)
   class Meta:
     model = Character
-    fields = ['name', 'race', 'alignment', 'level', 'exp']
+    fields = ['name', 'alignment', 'level', 'exp']
+    # 'race', DONT FORGET TO ADD RACE FIELD BACK IN
    

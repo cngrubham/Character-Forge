@@ -7,30 +7,113 @@
 {% else %}
 <h1>Add Character</h1>
 {% endif %}
-
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-        {{ form.name.label_tag }} {{ form.name }}
-        {{ form.alignment.label_tag }} {{ form.alignment }}
-        {{ form.level.label_tag }} {{ form.level }}
-        {{ form.exp.label_tag }} {{ form.exp }}
-        <tr>
+<div class="char-form-container container">
+    <form action="" method="post" id="character-form">
+        {% csrf_token %}
+        {% if form.errors %}
+        <ul class="errorlist red">
+            {% for error in form.errors %}
+            <li>Issue with field: {{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <table>
+            {{ form.name.label_tag }} {{ form.name }}
+            {{ form.alignment.label_tag }} {{ form.alignment }}
+            {{ form.level.label_tag }} {{ form.level }}
+            {{ form.exp.label_tag }} {{ form.exp }}
+            <!-- <tr>
             <th><label for="{{ form.race.id_for_label }}">Race:</label></th>
             <td>
                 <select name="{{ form.race.name }}" id="{{ form.race.id_for_label }}">
                     {% for race, image_url in form.race.field.choices %}
-                        <option value="{{ race }}">{{ race }}</option>
+                    <option value="{{ race }}">{{ race }}</option>
                     {% endfor %}
                 </select>
             </td>
-        </tr>
-    </table>
-    <input type="submit" value="Submit!" class="btn">
+        </tr> -->
+            <!-- <button type="button" id="generate-stats">Generate Stats</button> -->
+            <div class="dice-container">
+                <p>Roll the dice for your character stats!</p>
+                <div class="center-align-dice">
+                    <img src="{% static 'images/d20.png' %}" alt="Generate Stats" id="generate-stats"
+                        class="responsive-img" style="cursor: pointer; width: 100px; height: 100px;">
+                </div>
+            </div>
+            <tr>
+                <th>Strength:</th>
+                <td>
+                    <input type="text" name="{{ form.strength.name }}" id="id_strength">
+                </td>
+            </tr>
+            <tr>
+                <th>Constitution:</th>
+                <td>
+                    <input type="text" name="{{ form.constitution.name }}" id="id_constitution">
+                </td>
+            </tr>
+            <tr>
+                <th>Dexterity:</th>
+                <td>
+                    <input type="text" name="{{ form.dexterity.name }}" id="id_dexterity">
+                </td>
+            </tr>
+            <tr>
+                <th>Charisma:</th>
+                <td>
+                    <input type="text" name="{{ form.charisma.name }}" id="id_charisma">
+                </td>
+            </tr>
+            <tr>
+                <th>Wisdom:</th>
+                <td>
+                    <input type="text" name="{{ form.wisdom.name }}" id="id_wisdom">
+                </td>
+            </tr>
+            <tr>
+                <th>Intelligence:</th>
+                <td>
+                    <input type="text" name="{{ form.intelligence.name }}" id="id_intelligence">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit!" class="btn">
 
-    <!-- input dice roll/stat abilities below -->
+        <!-- input dice roll/stat abilities below -->
 
-</form>
+    </form>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function getRandomStat() {
+            return Math.floor(Math.random() * 13) + 8;
+        }
+    
+    let generateStatsButton = document.getElementById("generate-stats");
 
+    generateStatsButton.addEventListener("click", function () {
+
+        generateStatsButton.classList.add("spin");
+
+        let strength = getRandomStat();
+        let constitution = getRandomStat();
+        let dexterity = getRandomStat();
+        let charisma = getRandomStat();
+        let wisdom = getRandomStat();
+        let intelligence = getRandomStat();
+
+        document.getElementById("id_strength").value = strength;
+        document.getElementById("id_constitution").value = constitution;
+        document.getElementById("id_dexterity").value = dexterity;
+        document.getElementById("id_charisma").value = charisma;
+        document.getElementById("id_wisdom").value = wisdom;
+        document.getElementById("id_intelligence").value = intelligence;
+
+        setTimeout(function () {
+            generateStatsButton.classList.remove("spin");
+        }, 3000);
+    });
+});
+</script>
 
 {% endblock %}
