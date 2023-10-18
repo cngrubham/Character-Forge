@@ -1,0 +1,44 @@
+.char-form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+.center-align-dice {
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #b30000;
+}
+
+/* Dice image styles */
+#generate-stats {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
