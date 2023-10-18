@@ -18,7 +18,8 @@ class User(models.Model):
 class Character(models.Model):
     name = models.CharField(max_length=100)
     picURL = models.CharField(max_length=500)
-    race = models.CharField(max_length=20)
+    race = models.CharField(max_length=100)
+    gender = models.CharField(max_length=100, default='Male')
     alignment = models.CharField(max_length=20)
     level = models.IntegerField(default=1)
     exp = models.IntegerField(default=1)
@@ -35,3 +36,5 @@ class Character(models.Model):
     def __str__(self):
         return f'{self.name} ({self.id})'
 
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'character_id': self.id})
