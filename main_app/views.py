@@ -59,7 +59,6 @@ def user_detail(request, user_id):
     avatar_value = user.avatar
     avatar_result = [ (a, u) for a, u in FACTION_URLS if a == avatar_value]
 
-
     character_form = CharacterForm()
     # will probably need to change.all to display only specific user characters
     return render(request, 'user/user_detail.html', {'character_form': character_form, 'user': user, 'user_id': user_id, 'avatar_name': avatar_result[0][0], 'avatar_url': avatar_result[0][1]})
