@@ -35,7 +35,7 @@ class CharacterForm(ModelForm):
   alignment = forms.ChoiceField(widget=forms.Select)
   class Meta:
       model = Character
-      fields = ['name', 'gender', 'race', 'alignment', 'level', 'exp', 'strength', 'constitution', 'dexterity', 'charisma', 'wisdom', 'intelligence']
+      fields = ['name', 'gender', 'race', 'alignment', 'level', 'exp']
 
   def __init__(self, *args, **kwargs):
       super(CharacterForm, self).__init__(*args, **kwargs)
