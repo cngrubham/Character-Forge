@@ -118,6 +118,15 @@ def character_create(request, user_id, character_id=None):
                 selected_gender = form.cleaned_data.get('gender')
                 gender_image_url = GENDER_IMAGE_URLS.get(selected_gender, 'URL_FOR_DEFAULT_IMAGE')
                 new_character.picURL = gender_image_url
+
+                # Generate random stats here
+                new_character.strength = random.randint(8, 20)
+                new_character.constitution = random.randint(8, 20)
+                new_character.dexterity = random.randint(8, 20)
+                new_character.charisma = random.randint(8, 20)
+                new_character.wisdom = random.randint(8, 20)
+                new_character.intelligence = random.randint(8, 20)
+
                 new_character.save()
                 print("Character creation successful")
                 return redirect('user_detail', user_id=user_id)
