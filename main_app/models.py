@@ -37,4 +37,4 @@ class Character(models.Model):
         return f'{self.name} ({self.id})'
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'character_id': self.id})
+        return reverse('detail', kwargs={'character_id': self.id})  
