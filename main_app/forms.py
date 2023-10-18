@@ -1,6 +1,6 @@
 from django.forms import ModelForm, forms
 from .models import Character, User, FACTION_CHOICES
-from django.forms.widgets import Select
+from django.forms.widgets import Select, PasswordInput
 
 class CharacterForm(ModelForm):
   class Meta:
@@ -13,6 +13,7 @@ class UserForm(ModelForm):
     model = User
     fields = "__all__"
     widgets = {
-      'avatar': Select(choices=FACTION_CHOICES)
+      'avatar': Select(choices=FACTION_CHOICES),
+      'password': PasswordInput(),
     }
    
