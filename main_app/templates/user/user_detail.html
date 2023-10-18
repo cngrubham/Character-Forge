@@ -6,7 +6,12 @@
             <div class="card">
                 <div class="card-content">
                     <h1 class="center-align" style="font-size: 3rem; font-family: 'Philosopher', sans-serif;">Profile:
-                        {{ user.name }}</h1>
+                        {{ user.name }}
+                    </h1>
+                    <br>
+                    <h3>{{ avatar_name }}</h3> 
+                    <br>                   
+                    <img src="{{ avatar_url }}" alt="">
                     <div>
                         <a class="btn grey" href="{% url 'update_user' user.id %}">Edit</a>
                         <a class="btn grey" href="{% url 'delete_user' user.id %}">Delete</a>
