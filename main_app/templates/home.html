@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+<div class="container">
+    <h1 class="center-align white-text" style="font-size: 5.5rem; font-family: 'Cinzel', serif; font-weight:800;">
+        Character Forge
+    </h1>
+    <h3 class="center-align white-text flow-text" style="font-family: 'Philosopher', sans-serif; margin-bottom: 40px;">
+        Welcome to the Dungeon</h3>
+    <ul class=" center-align">
+        <li><a class="btn waves-effect waves-light red accent-4" href="{% url 'create_user' %}">New User</a></li>
+    </ul>
+    <div class="center-align">
+        <!-- <img class="responsive-img" src="{% static 'images/dragonborn.png' %}"> -->
+        <img class="rotate-center" src="{% static 'images/d20.png' %}">
+    </div>
+</div>
 
-<h1>Home</h1>
-<h3>Welcome to the Dungeon</h3>
-<li><a href="{% url 'create_user' %}">New User</a></li>
-<img src="{% static 'images/dragonborn.png' %}">
 {% endblock %}

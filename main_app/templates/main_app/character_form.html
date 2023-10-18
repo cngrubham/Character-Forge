@@ -2,11 +2,61 @@
 {% block content %}
     <!-- Your HTML content here -->
 
+<div class="char-form-container container">
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Save" class="btn">
+                <div class="dice-container">
+                <p>Roll the dice for your character stats!</p>
+                <div class="center-align-dice">
+                    <img src="{% static 'images/d20.png' %}" alt="Generate Stats" id="generate-stats"
+                        class="responsive-img" style="cursor: pointer; width: 100px; height: 100px;">
+                </div>
+            </div>
+            <tr>
+                <th>Strength:</th>
+                <td>
+                    <input type="text" name="{{ form.strength.name }}" id="id_strength">
+                </td>
+            </tr>
+            <tr>
+                <th>Constitution:</th>
+                <td>
+                    <input type="text" name="{{ form.constitution.name }}" id="id_constitution">
+                </td>
+            </tr>
+            <tr>
+                <th>Dexterity:</th>
+                <td>
+                    <input type="text" name="{{ form.dexterity.name }}" id="id_dexterity">
+                </td>
+            </tr>
+            <tr>
+                <th>Charisma:</th>
+                <td>
+                    <input type="text" name="{{ form.charisma.name }}" id="id_charisma">
+                </td>
+            </tr>
+            <tr>
+                <th>Wisdom:</th>
+                <td>
+                    <input type="text" name="{{ form.wisdom.name }}" id="id_wisdom">
+                </td>
+            </tr>
+            <tr>
+                <th>Intelligence:</th>
+                <td>
+                    <input type="text" name="{{ form.intelligence.name }}" id="id_intelligence">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit!" class="btn">
+
+        <!-- input dice roll/stat abilities below -->
+
     </form>
+</div>
     <p id="alignment-name"></p>
     <p id="alignment-desc"></p>
     <p id="race-name"></p>
@@ -15,6 +65,36 @@
     <p id="race-traits"></p>
     
     <script>
+ document.addEventListener("DOMContentLoaded", function () {
+  function getRandomStat() {
+            return Math.floor(Math.random() * 13) + 8;
+        }
+    
+    let generateStatsButton = document.getElementById("generate-stats");
+
+    generateStatsButton.addEventListener("click", function () {
+
+        generateStatsButton.classList.add("spin");
+
+        let strength = getRandomStat();
+        let constitution = getRandomStat();
+        let dexterity = getRandomStat();
+        let charisma = getRandomStat();
+        let wisdom = getRandomStat();
+        let intelligence = getRandomStat();
+
+        document.getElementById("id_strength").value = strength;
+        document.getElementById("id_constitution").value = constitution;
+        document.getElementById("id_dexterity").value = dexterity;
+        document.getElementById("id_charisma").value = charisma;
+        document.getElementById("id_wisdom").value = wisdom;
+        document.getElementById("id_intelligence").value = intelligence;
+
+        setTimeout(function () {
+            generateStatsButton.classList.remove("spin");
+        }, 3000);
+    });
+});
         document.addEventListener("DOMContentLoaded", function() {
             const alignmentDropdown = document.querySelector("#id_alignment");
             const raceDropdown = document.querySelector("#id_race"); // Select the race dropdown
@@ -76,6 +156,5 @@
     </script>
     
 {% endblock %}
-
 
 

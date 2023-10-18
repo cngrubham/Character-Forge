@@ -28,6 +28,7 @@ GENDER_CHOICES = (
 
 
 class CharacterForm(ModelForm):
+
   gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.Select)
   race = forms.ChoiceField(widget=forms.Select)
   alignment = forms.ChoiceField(widget=forms.Select)
@@ -47,3 +48,4 @@ class CharacterForm(ModelForm):
       # Set the choices for the 'race' field
       self.fields['race'].choices = races
       self.fields['alignment'].choices = alignments
+

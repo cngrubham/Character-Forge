@@ -71,6 +71,7 @@ class UserDelete(DeleteView):
   success_url = reverse_lazy('user_index')
 
 
+
 def character_create(request, user_id, character_id=None):
     if character_id is not None:
         # Fetch the character to edit
@@ -82,6 +83,7 @@ def character_create(request, user_id, character_id=None):
                 return redirect('user_detail', user_id=user_id)
         else:
             form = CharacterForm(instance=character)
+
     else:
         if request.method == 'POST':
             form = CharacterForm(request.POST)
@@ -108,29 +110,6 @@ def character_create(request, user_id, character_id=None):
 
     return render(request, 'main_app/character_form.html', context)
 
-
-
-    #   race = form.get('race')
-    #   picture_url = [url for name, url in RACE_CHOICES if name == race]
-    #   if picture_url:
-    #         picture_url = picture_url[0]  
-    #   else:
-    #       picture_url = 'URL_FOR_DEFAULT_IMAGE'
-        
-    #   form.instance.picURL = picture_url
-        
-    #     # dice roll stats, may need to change how this is implemented
-    #   form.instance.strength = dice_roll()
-    #   form.instance.constitution = dice_roll()
-    #   form.instance.dexterity = dice_roll()
-    #   form.instance.charisma = dice_roll()
-    #   form.instance.wisdom = dice_roll()
-    #   form.instance.intelligence = dice_roll()
-
-    #   return super().form_valid(form)
-
-    # def get_success_url(self):
-    #         return reverse('user_detail')
 
 class CharacterDelete(DeleteView):
   model = Character
@@ -187,19 +166,3 @@ def race(request, race_name):
 
   return render(request, 'characters/race.html', {'name': name, 'align': align, 'lang': lang, 'traits': traits })
 
-# def race(request, race_name):
-#     race_name = race_name.lower().replace(" ", "-")
-#     picture_url = [url for name, url in RACE_CHOICES if name == race_name]
-#     if picture_url:
-#         picture_url = picture_url[0]  
-#     else:
-#         # default if none found
-#         picture_url = 'URL_FOR_DEFAULT_IMAGE'
-    
-#     response = requests.get(f'https://www.dnd5eapi.co/api/races/{race_name}').json()
-#     api_race_name = response.get('name', '')
-#     align = response.get('alignment', '')
-#     lang = response.get('language_desc', '')
-#     traits = response.get('traits', '')
-
-#     return render(request, 'characters/race.html', {'name': api_race_name, 'align': align, 'lang': lang, 'traits': traits, 'picture_url': picture_url})

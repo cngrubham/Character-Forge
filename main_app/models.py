@@ -22,13 +22,13 @@ class Character(models.Model):
     gender = models.CharField(max_length=100, default='Male')
     alignment = models.CharField(max_length=20)
     level = models.IntegerField(default=1)
-    exp = models.IntegerField(default=1)
-    strength = models.IntegerField
-    constitution = models.IntegerField
-    dexterity = models.IntegerField
-    charisma = models.IntegerField
-    wisdom = models.IntegerField
-    intelligence = models.IntegerField
+    exp = models.IntegerField(default=0)
+    strength = models.IntegerField()
+    constitution = models.IntegerField()
+    dexterity = models.IntegerField()
+    charisma = models.IntegerField()
+    wisdom = models.IntegerField()
+    intelligence = models.IntegerField()
 
     # User foreign key
     user = models.ForeignKey(User, on_delete=models.CASCADE)
