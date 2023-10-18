@@ -1,0 +1,75 @@
+.user-page-container {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.user-page-container h1 {
+    font-size: 2.5rem;
+    color: white;
+    font-family: 'Philosopher', sans-serif;
+}
+.grid-container {
+    margin: 0 40px;
+}
+
+.user-grid {
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+    gap: 10px;
+    padding: 20px;
+}
+
+.user-card {
+    display: flex;
+    justify-content: space-between;
+    /* text-align: left; */
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    /* border-radius: 5px; */
+    padding: 10px;
+    /* margin-bottom: 20px; */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-info .user-name {
+    font-family: 'Philosopher', sans-serif;
+    font-size: 1.5rem;
+}
+
+.user-info .user-email {
+    font-size: 1rem;
+    color: #888; 
+}
+
+.user-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-button {
+    padding: 10px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-button.details-button {
+    background-color: #27ae60; 
+}
+
+.action-button.edit-button {
+    background-color: #f1c40f;
+}
+
+.action-button.delete-button {
+    background-color: #e74c3c; 
+}
