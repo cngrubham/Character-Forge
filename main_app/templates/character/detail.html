@@ -20,10 +20,10 @@
                 </li>
         </div>
         <div class="right-column-char">
-            <li class="character-info">
+            <li class="character-info" id="char_race" data-race="{{ character.race }}">
                 Race: {{ character.race }}
             </li>
-            <li class="character-info">
+            <li class="character-info" id="char_alignment" data-alignment="{{ character.alignment }}">
                 Alignment: {{ character.alignment }}
             </li>
             <li class="character-info">
@@ -59,33 +59,47 @@
     </div>
     <p id="alignment-name"></p>
     <p id="alignment-desc"></p>
+    <p id="race-name"></p>
     <p id="race-align"></p>
     <p id="race-lang"></p>
     <p id="race-traits"></p>
 </div>
+
+
 <script>
+ document.addEventListener("DOMContentLoaded", function () {
+    const charRaceElement = document.querySelector("#char_race");
+    const charAlignmentElement = document.querySelector("#char_alignment");
+
+
+    const race = charRaceElement.getAttribute("data-race");
+    const alignment = charAlignmentElement.getAttribute("data-alignment");
+    fetchRaceData(race);
+    fetchAlignmentData(alignment);
+
+});
 
     function fetchAlignmentData(alignment_name) {
-        console.log("Fetching alignment data...");
-        alignment_name = alignment_name.toLowerCase().replace(" ", "-");
-        const url = `https://www.dnd5eapi.co/api/alignments/${alignment_name}`;
+    console.log("Fetching alignment data...");
+    alignment_name = alignment_name.toLowerCase().replace(" ", "-");
+    const url = `https://www.dnd5eapi.co/api/alignments/${alignment_name}`;
 
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                const alignmentNameElement = document.querySelector("#alignment-name");
-                const alignmentDescElement = document.querySelector("#alignment-desc");
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const alignmentNameElement = document.querySelector("#alignment-name");
+            const alignmentDescElement = document.querySelector("#alignment-desc");
 
-                alignmentNameElement.textContent = data.name;
-                alignmentDescElement.textContent = data.desc;
-            })
-            .catch(error => {
-                console.error("Error fetching alignment data: ", error);
-            });
+            alignmentNameElement.textContent = data.name;
+            alignmentDescElement.textContent = data.desc;
+        })
+        .catch(error => {
+            console.error("Error fetching alignment data: ", error);
+        });
     }
 
     function fetchRaceData(race_name) {
-        console.log("Fetching race data...");
+        console.log("Fetching race data..."+ race_name);
         race_name = race_name.toLowerCase().replace(" ", "-");
         const url = `https://www.dnd5eapi.co/api/races/${race_name}`;
 
@@ -114,19 +128,6 @@
     }
 
 
-
-    const alignmentName = "{{ alignment_name }}";
-    const alignmentDesc = "{{ alignment_desc }}";
-    const raceAlign = "{{ race_align }}";
-    const raceLang = "{{ race_lang }}";
-    const raceTraits = "{{ race_traits }}";
-
-
-    document.querySelector("#alignment-name").textContent = alignmentName;
-    document.querySelector("#alignment-desc").textContent = alignmentDesc;
-    document.querySelector("#race-align").textContent = raceAlign;
-    document.querySelector("#race-lang").textContent = raceLang;
-    document.querySelector("#race-traits").textContent = raceTraits;
 
 </script>
 
