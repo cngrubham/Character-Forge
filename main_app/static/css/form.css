@@ -120,3 +120,8 @@ input#id_intelligence {
         align-self: center;
     }
 }
+
+.info-container {
+    float: right;
+    margin-left: 20px; /* Adjust the margin as needed */
+}

@@ -9,6 +9,8 @@ import requests
 import random
 from django.http import JsonResponse
 
+
+
 GENDER_IMAGE_URLS = {
     'Dragonborn-M': 'images/dragonborn.png',
     'Dragonborn-F': 'images/dragonborn-female.jpeg',

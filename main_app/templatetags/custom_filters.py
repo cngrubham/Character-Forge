@@ -25,3 +25,8 @@ GENDER_CHOICES_URL = {
 @register.filter
 def gender_image_url(gender):
     return GENDER_CHOICES_URL.get(gender, 'URL_FOR_DEFAULT_IMAGE')
+@register.filter
+def lowercase_and_remove_hyphens(value):
+    return value.lower().replace('-', '')
+
+register.filter('gender_image_url', gender_image_url)

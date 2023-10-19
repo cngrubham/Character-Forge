@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
+{% load custom_filters %}
 <div class="page-container-prof">
 <div class="user-details-container">
     <div class="avatar-card">
@@ -26,15 +28,21 @@
 <div class="user-characters-container">
     <h2 class="characters-title">Characters Created by {{ user.name }}</h2>
     <div class="character-grid">
-        {% for character in user.character_set.all %}
-        <div class="character-card">
-            <p>{{ character.name }}</p>
-            <p>{{ character.race }}</p>
-            <button class="character-detail-btn"><a href="{% url 'detail' character.id %}">View Character
-                </a></button>
-            </div>
-            {% endfor %}
+{% for character in user.character_set.all %}
+<div class="character-card">
+    <p>{{ character.name }}</p>
+    <p>{{ character.race }}</p>
+    {% with character_gender_image=character.gender|gender_image_url %}
+        <img class="character-image" width="20" height="20" src="{% if character.gender != 'URL_FOR_DEFAULT_IMAGE' %}{% static character_gender_image %}{% else %}{% static 'images/default_image.png' %}{% endif %}" alt="{{ character.gender }}">
+    {% endwith %}
+    
+    <button class="character-detail-btn"><a href="{% url 'detail' character.id %}">View Character
+        </a></button>
+    </div>
+    
+    {% endfor %}
     </div>
 </div>
 </div>
+
 {% endblock %}
