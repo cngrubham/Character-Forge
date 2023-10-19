@@ -1,0 +1,57 @@
+.background-dragon {
+    background-image: url('/static/images/dragon2.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.centered-container {
+    background-image: url('/static/images/paper3.png');
+    background-repeat: no-repeat;
+    opacity: 0.65;
+    background-size: contain;
+    margin-top: 120px;
+    padding: 40px;
+    overflow: hidden;
+    white-space: initial;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-width: 650px;
+    min-height: 460px;
+}
+
+.delete-title {
+    font-size: 3rem;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    opacity: 1;
+}
+
+.delete-message {
+    font-size: 1.25rem;
+    font-family: 'Philosopher', sans-serif;
+    font-weight: bold;
+}
+
+.cancel-link button {
+    background-color: #c00606;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+.cancel-link button:hover {
+    background-color: #870606;
+
+}

@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete Character</h1>
+<div class="background-dragon">
 
-  <h4>Are you sure you want to delete <span>{{ object.name }}</span>? This cannot be undone.</h4>
+  <div class="centered-container">
+    <h1 class="delete-title">Delete Character</h1>
 
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes - Delete!" class="btn">
-    <a href="{% url 'detail' character.id %}">Cancel</a>
-  </form>
-{% endblock %}
+    <h4 class="delete-message">Are you sure you want to delete <span>{{ object.name }}</span>?</br> This cannot be undone.
+    </h4>
+
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Delete!" class="btn delete-btn">
+      <a href="{% url 'detail' character.id %}" class="cancel-link"><button>Cancel</button></a>
+    </form>
+  </div>
+  {% endblock %}
+</div>
