@@ -17,10 +17,6 @@ urlpatterns = [
     path('character/create/<int:user_id>', views.character_create, name='character_create'),
     path('character/<int:character_id>/update/', views.CharacterUpdate.as_view(), name='update_character'),
     path('character/<int:pk>/delete/', views.CharacterDelete.as_view(), name='delete_character'),
-    path('character_demo/', views.character_demo, name='character_demo'),
-    path('alignment/<str:alignment_name>/', views.char_profile_demo, name='char_profile_demo'),
-    path('races_index/', views.races_index, name='races_index'),
-    path('races_index/<str:race_name>/', views.race, name='race'),
     path('proxy_api/<str:alignment_name>/', views.proxy_api, name='proxy_api'),
 ] 
 if settings.DEBUG:
