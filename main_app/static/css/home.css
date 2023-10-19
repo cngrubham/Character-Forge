@@ -41,6 +41,10 @@
     border-radius: 5px;
 }
 
+.small-d20 {
+    width: 300px;
+}
+
 @media screen and (max-width: 800px) {
     .page-title {
         font-size: 3rem;
@@ -48,5 +52,9 @@
 
     .page-container h3 {
         font-size: 1.5rem;
+    }
+
+    .small-d20 {
+        width: 200px;
     }
 }
