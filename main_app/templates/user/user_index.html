@@ -7,15 +7,14 @@
     <div class="user-grid">
         {% for user in users %}
         <div class="user-card">
-            <a href="{% url 'user_detail' user.id %}" class="action-button details-button">Details</a>
+            <a href="{% url 'user_detail' user.id %}" class="action-button details-button">Details &nbsp&nbsp<i class="fas fa-info-circle"></i></a>
             <div class="user-info">
                 <span class="user-name">{{ user.name }}</span>
                 <span class="user-email">{{ user.email }}</span>
             </div>
             <div class="user-actions">
-                
-                <a href="{% url 'update_user' user.id %}" class="action-button edit-button">Edit</a>
-                <a href="{% url 'delete_user' user.id %}" class="action-button delete-button">Delete</a>
+                <a href="{% url 'update_user' user.id %}" class="action-button edit-button"><i class="fas fa-edit"></i></a>
+                <a href="{% url 'delete_user' user.id %}" class="action-button delete-button"><i class="fa-solid fa-trash"></i></a>
             </div>
         </div>
         {% endfor %}

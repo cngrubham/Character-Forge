@@ -12,7 +12,9 @@
     font-family: 'Cinzel', serif;
     font-weight: 800;
     color: white;
+    text-shadow: -1px -1px 4px #000000, 1px -1px 4px #000000;
 }
+
 
 .page-container h3 {
     font-family: 'Philosopher', sans-serif;
