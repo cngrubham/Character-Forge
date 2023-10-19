@@ -4,6 +4,7 @@
     background-repeat: no-repeat;
     height: 100vh;
 }
+
 .char-form-container {
     max-width: 600px;
     margin: 60px auto;
@@ -11,7 +12,12 @@
     border: 1px solid #ccc;
     background-color: #f9f9f9a8;
     border-radius: 5px;
-    
+
+}
+
+.faction-img {
+    padding: 20px;
+    max-height: 400px;
 }
 
 form {
@@ -26,6 +32,7 @@ form {
     color: black;
     text-align: center;
     padding-top: 60px;
+    text-shadow: -1px -1px 5px #fff, 1px -1px 5px #fff, -1px 1px 5px #fff, 1px 1px 5px #fff;
 }
 
 .center-align-dice {
@@ -98,4 +105,18 @@ input#id_intelligence {
     margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+@media screen and (max-width: 400px) {
+    .char-form-container {
+        max-width: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .faction-img {
+        max-width: 180px;
+        align-self: center;
+    }
 }

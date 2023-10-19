@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class="form-page-container">
 {% if object %}
-<h1 class="">Edit <span>
+<h1 class="form-page-title">Edit <span>
         {{ object.name }}</span></h1>
 {% else %}
-<h1 class="">Add User</h1>
+<h1 class="form-page-title">Add User</h1>
 {% endif %}
-<div class="col s12 m6 offset-m3">
+<div style="font-family: 'Philosopher', sans-serif; font-weight: bold; width: 80%;" class="char-form-container container">
     <div class="card">
         <div class="card-content">
             <form action="" method="POST">
@@ -33,7 +33,8 @@
         <tr>
             <td><label for="id_{{ form.avatar.name }}" class="form-label">{{ form.avatar.name|capfirst }}:</label></td>
             <td>
-                <select name="{{ form.avatar.name }}" id="id_{{ form.avatar.name }}">
+                <select name="{{ form.avatar.name }}" 
+                id="id_{{ form.avatar.name }}">
                     {% for choice in form.avatar.field.choices %}
                         <option value="{{choice.0}}" {% if choice.1 == form.avatar.value %}selected{% endif %}>{{ choice.1 }}</option>
                     {% endfor %}
@@ -42,17 +43,18 @@
         </tr>       
                 </table>
                 <br>
+                <div style="text-align: center;">
     <input type="submit" value="Submit!" class="btn waves-effect waves-light red accent-4">
                 <br>
-    
+            </div>
     {% for faction, url in faction_urls %}
         <div>
-            <img src="{{ url }}" alt="{{ faction }}" style="display: none">
+            <img class="faction-img" src="{{ url }}" alt="{{ faction }}" style="display: none">
         </div>
     {% endfor %}
 
 </form>
-
+</div>
 <script>
     
     document.addEventListener("DOMContentLoaded", function() {

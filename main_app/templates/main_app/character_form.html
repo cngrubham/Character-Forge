@@ -2,91 +2,93 @@
 {% block content %}
 {% load static %}
 <div class="form-page-container">
-{% if object %}
-<h1 class="form-page-title">Edit Your Character <span>
-        {{ object.name }}</span></h1>
-{% else %}
-<h1 class="form-page-title">Add Your Character's Details</h1>
-{% endif %}
-<div style="font-family: 'Philosopher', sans-serif; font-weight: bold; width: 80%;" class="char-form-container container">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <div class="dice-container">
-            <p>Roll the dice for your character stats!</p>
-            <div class="center-align-dice">
-                <img src="{% static 'images/d20.png' %}" alt="Generate Stats" id="generate-stats" class="responsive-img"
-                    style="cursor: pointer; width: 100px; height: 100px;">
+    {% if object %}
+    <h1 class="form-page-title">Edit Your Character <span>
+            {{ object.name }}</span></h1>
+    {% else %}
+    <h1 class="form-page-title">Add Your Character's Details</h1>
+    {% endif %}
+    <div style="font-family: 'Philosopher', sans-serif; font-weight: bold; width: 80%;"
+        class="char-form-container container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="dice-container">
+                <p>Roll the dice for your character stats!</p>
+                <div class="center-align-dice">
+                    <img src="{% static 'images/d20.png' %}" alt="Generate Stats" id="generate-stats"
+                        class="responsive-img" style="cursor: pointer; width: 100px; height: 100px;">
+                </div>
             </div>
-        </div>
-        <div class="input-row">
-            <div class="input-col">
-                <tr>
-                    <label for="{{ form.strength.id_for_label }}">Strength</label>
-                    <td>
-                        <input type="text" name="{{ form.strength.name }}" id="id_strength">
-                    </td>
-                </tr>
+            <div class="input-row">
+                <div class="input-col">
+                    <tr>
+                        <label for="{{ form.strength.id_for_label }}">Strength</label>
+                        <td>
+                            <input type="text" name="{{ form.strength.name }}" id="id_strength">
+                        </td>
+                    </tr>
+                </div>
+
+                <div class="input-col">
+                    <tr>
+                        <label for="{{ form.constitution.id_for_label }}">Constitution</label>
+                        <td>
+                            <input type="text" name="{{ form.constitution.name }}" id="id_constitution">
+                        </td>
+                    </tr>
+                </div>
+                <div class="input-col">
+                    <tr>
+                        <label for="{{ form.dexterity.id_for_label }}">Dexterity</label>
+                        <td>
+                            <input type="text" name="{{ form.dexterity.name }}" id="id_dexterity">
+                        </td>
+                    </tr>
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-col">
+                    <tr>
+                        <label for="{{ form.charisma.id_for_label }}">Charisma</label>
+                        <td>
+                            <input type="text" name="{{ form.charisma.name }}" id="id_charisma">
+                        </td>
+                    </tr>
+                </div>
+                <div class="input-col">
+                    <tr>
+                        <label for="{{ form.wisdom.id_for_label }}">Wisdom</label>
+                        <td>
+                            <input type="text" name="{{ form.wisdom.name }}" id="id_wisdom">
+                        </td>
+                    </tr>
+                </div>
+                <div class="input-col">
+                    <tr>
+                        <label for="{{ form.intelligence.id_for_label }}">Intelligence</label>
+                        <td>
+                            <input type="text" name="{{ form.intelligence.name }}" id="id_intelligence">
+                        </td>
+                    </tr>
+                </div>
+            </div>
+            </table>
+            <p style="text-align: center;">Begin your adventure!</p>
+            <div style="text-align: center;">
+                <input type="submit" value="Save" class="btn">
             </div>
 
-            <div class="input-col">
-                <tr>
-                    <label for="{{ form.constitution.id_for_label }}">Constitution</label>
-                    <td>
-                        <input type="text" name="{{ form.constitution.name }}" id="id_constitution">
-                    </td>
-                </tr>
-            </div>
-            <div class="input-col">
-                <tr>
-                    <label for="{{ form.dexterity.id_for_label }}">Dexterity</label>
-                    <td>
-                        <input type="text" name="{{ form.dexterity.name }}" id="id_dexterity">
-                    </td>
-                </tr>
-            </div>
-        </div>
-        <div class="input-row">
-            <div class="input-col">
-                <tr>
-                    <label for="{{ form.charisma.id_for_label }}">Charisma</label>
-                    <td>
-                        <input type="text" name="{{ form.charisma.name }}" id="id_charisma">
-                    </td>
-                </tr>
-            </div>
-            <div class="input-col">
-                <tr>
-                    <label for="{{ form.wisdom.id_for_label }}">Wisdom</label>
-                    <td>
-                        <input type="text" name="{{ form.wisdom.name }}" id="id_wisdom">
-                    </td>
-                </tr>
-            </div>
-            <div class="input-col">
-                <tr>
-                    <label for="{{ form.intelligence.id_for_label }}">Intelligence</label>
-                    <td>
-                        <input type="text" name="{{ form.intelligence.name }}" id="id_intelligence">
-                    </td>
-                </tr>
-            </div>
-        </div>
-        </table>
-        <p>Begin your adventure!</p>
-        <input type="submit" value="Save" class="btn">
+            <!-- input dice roll/stat abilities below -->
 
-
-        <!-- input dice roll/stat abilities below -->
-
-    </form>
-</div>
-<p id="alignment-name"></p>
-<p id="alignment-desc"></p>
-<p id="race-name"></p>
-<p id="race-align"></p>
-<p id="race-lang"></p>
-<p id="race-traits"></p>
+        </form>
+    </div>
+    <p id="alignment-name"></p>
+    <p id="alignment-desc"></p>
+    <p id="race-name"></p>
+    <p id="race-align"></p>
+    <p id="race-lang"></p>
+    <p id="race-traits"></p>
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
