@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
 <div class="form-page-container">
     {% if object %}
     <h1 class="form-page-title">Edit Your Character <span>
@@ -13,6 +14,10 @@
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
+            
+            <div class="gender-image-container">
+                <img src="" alt="Gender Image" id="gender-image" class="gender-image">
+            </div>
             <div class="dice-container">
                 <p>Roll the dice for your character stats!</p>
                 <div class="center-align-dice">
@@ -81,8 +86,8 @@
 
             <!-- input dice roll/stat abilities below -->
 
-        </form>
-    </div>
+</form>
+<div class="info-container">
     <p id="alignment-name"></p>
     <p id="alignment-desc"></p>
     <p id="race-name"></p>
@@ -90,7 +95,32 @@
     <p id="race-lang"></p>
     <p id="race-traits"></p>
 </div>
+
+
+<!-- Add this HTML code to display the image -->
+
+           
 <script>
+    GENDER_IMAGE_URLS = {
+        'Dragonborn-M': '{% static "images/dragonborn.png" %}',
+        'Dragonborn-F': '{% static "images/dragonborn-female.jpeg" %}',
+        'Dwarf-M': '{% static "images/Dwarf.webp" %}',
+        'Dwarf-F': '{% static "images/dwarf-female.png" %}',
+        'Elf-M': '{% static "images/elf-male.webp" %}',
+        'Elf-F': '{% static "images/elf.png" %}',
+        'Gnome-M': '{% static "images/gnome.webp" %}',
+        'Gnome-F': '{% static "images/gnome-female.jpeg" %}',
+        'Half-elf-M': '{% static "images/half-elf.jpeg" %}',
+        'Half-elf-F': '{% static "images/half-elf.jpeg" %}',
+        'Half-orc-M': '{% static "images/Half_Orc_male.webp" %}',
+        'Half-orc-F': '{% static "images/half-orc-female.jpeg" %}',
+        'Halfling-M': '{% static "images/halfling-male.png" %}',
+        'Halfling-F': '{% static "images/halfling_female.jpeg" %}',
+        'Human-M': '{% static "images/human_male.jpeg" %}',
+        'Human-F': '{% static "images/human-female.png" %}',
+        'Tiefling-M': '{% static "images/tiefling-male.jpeg" %}',
+        'Tiefling-F': '{% static "images/tiefling-female.jpeg" %}'
+    };
     document.addEventListener("DOMContentLoaded", function () {
         function getRandomStat() {
             return Math.floor(Math.random() * 13) + 8;
@@ -121,10 +151,13 @@
             }, 1000);
         });
     });
+    
     document.addEventListener("DOMContentLoaded", function () {
         const alignmentDropdown = document.querySelector("#id_alignment");
         const raceDropdown = document.querySelector("#id_race"); // Select the race dropdown
-
+        const genderDropdown = document.querySelector("#id_gender");
+        const genderImageElement = document.querySelector("#gender-image");
+       
         alignmentDropdown.addEventListener("change", function () {
             const selectedAlignment = this.value;
             fetchAlignmentData(selectedAlignment);
@@ -134,6 +167,13 @@
             const selectedRace = this.value;
             fetchRaceData(selectedRace);
         });
+
+        genderDropdown.addEventListener("change", function () {
+            const selectedGender = this.value;
+            const genderImageUrl = GENDER_IMAGE_URLS[selectedGender];
+            genderImageElement.src = genderImageUrl;
+            console.log(selectedGender)
+    });
 
         function fetchAlignmentData(alignment_name) {
             console.log("Fetching alignment data...");
@@ -178,6 +218,8 @@
                     console.error("Error fetching race data: ", error);
                 });
         }
+
+ 
     });
 </script>
 

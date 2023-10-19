@@ -33,6 +33,7 @@ class CharacterForm(ModelForm):
   gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.Select)
   race = forms.ChoiceField(widget=forms.Select)
   alignment = forms.ChoiceField(widget=forms.Select)
+  
   class Meta:
       model = Character
       fields = ['name', 'gender', 'race', 'alignment', 'level', 'exp']
