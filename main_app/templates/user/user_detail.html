@@ -33,7 +33,7 @@
     <p>{{ character.name }}</p>
     <p>{{ character.race }}</p>
     {% with character_gender_image=character.gender|gender_image_url %}
-        <img class="character-image" width="20" height="20" src="{% if character.gender != 'URL_FOR_DEFAULT_IMAGE' %}{% static character_gender_image %}{% else %}{% static 'images/default_image.png' %}{% endif %}" alt="{{ character.gender }}">
+        <img class="character-image" style="width:40px; height:40px" src="{% if character.gender != 'URL_FOR_DEFAULT_IMAGE' %}{% static character_gender_image %}{% else %}{% static 'images/default_image.png' %}{% endif %}" alt="{{ character.gender }}">
     {% endwith %}
     
     <button class="character-detail-btn"><a href="{% url 'detail' character.id %}">View Character
