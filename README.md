@@ -22,14 +22,18 @@ along with utilization of external APIs for data retrieval.
 
 ### Installation Instructions
 
-#### Run the following:
+#### Run the following for setup:
 
 * sudo apt-get install python3-pip
 * pip3 install Django
 * pip3 install psycopg2-binary
 * createdb characterforge
 * python3 manage.py makemigrations
-* pythong3 manage.py migrate
+* python3 manage.py migrate
+
+#### Start the server
+
+* python3 manage.py runserver
 
 #### Make sure global .gitignore file includes the following:
 
@@ -68,13 +72,14 @@ along with utilization of external APIs for data retrieval.
 
 ### Screenshots
 
-![Home page](/public/assets/Home-page.jpg "Home page")\
-![User Index](/public/assets/user-index.jpg "User Index")\
-![New User](/public/assets/create-user.jpg "New User")\
-![Edit User](/public/assets/edit-user.jpg "Edit User")\
-![User Details](/public/assets/user-detail.jpg "User Details")\
-![New ToDo](/public/assets/create-todo.jpg "New ToDo")\
-![Edit ToDo](/public/assets/edit-todo.jpg "Edit ToDo")
+![Home page](/main_app/static/assets/home_screenshot.png "Home page")\
+![User Index](/main_app/static/assets/user_index_screenshot.png "User Index")\
+![New User](/main_app/static/assets/create_user_screenshot.png "New User")\
+![Edit User](/main_app/static/assets/edit_user_screenshot.png "Edit User")\
+![User Details](/main_app/static/assets/user_detail_screenshot.png "User Details")\
+![Create Character](/main_app/static/assets/create_character_screenshot.png "Create Character")\
+![Character Detail](/main_app/static/assets/character_detail_screenshot.png "Character Detail")\
+![Character Edit](/main_app/static/assets/character_edit_screenshot.png "Character Edit")
 
 ### Learnings
 
