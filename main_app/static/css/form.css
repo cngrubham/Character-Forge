@@ -1,12 +1,12 @@
 .form-page-container {
-    background-image: url('/static/images/scroll.jpg');
+    background-image: url('/static/images/scroll-compressed.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
 }
 
 .char-form-page-container {
-    background-image: url('/static/images/scroll.jpg');
+    background-image: url('/static/images/scroll-compressed.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
