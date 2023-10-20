@@ -5,14 +5,81 @@
     height: 100vh;
 }
 
+.char-form-page-container {
+    background-image: url('/static/images/scroll.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.user-form-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.user-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.card-content {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .char-form-container {
-    max-width: 600px;
+    display: flex;
+    max-width: 800px;
     margin: 60px auto;
     padding: 20px;
-    border: 1px solid #e8d9aad8;
-    background-color: #e8d8aa82;
     border-radius: 5px;
+    justify-content: space-between;
+}
 
+.form-elements-column {
+    border: 1px solid #e8d9aad8;
+    background-color: #e8d9aa8b;
+    display: flex;
+    justify-content: center;
+}
+
+.fill-in-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-container {
+    flex: .75;
+    background-color: #872206d1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 650px;
+    width: 400px;
+    padding: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.info-container h3 {
+    font-size: 25px;
+    font-weight: 800;
+    font-family: 'Philosopher', sans-serif;
+    text-align: center;
+}
+
+.info-container p {
+    font-size: 20px;
 }
 
 .faction-img {
@@ -53,6 +120,16 @@ form {
 
 }
 
+.gender-image-container {
+    height: 200px;
+    width: 150px;
+    background-color: white;
+}
+
+.gender-image-container img {
+    height: 200px;
+    width: 150px;
+}
 
 #generate-stats {
     width: 100px;
@@ -84,6 +161,21 @@ form {
     width: calc(100% - 110px);
 }
 
+.char-form-column {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.char-form-elements-column {
+    /* width: 100%; */
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #e8d9aad8;
+    background-color: #e8d9aa8b;
+    border-radius: 5px;
+    flex: 1;
+}
 
 form.char-form-container input[type="text"] {
     width: 100%;
@@ -107,6 +199,26 @@ input#id_intelligence {
     border-radius: 4px;
 }
 
+@media screen and (max-width: 850px) {
+    .char-form-container {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info-container {
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .char-form-elements-column {
+        max-width: 100%;
+    }
+
+}
+
 @media screen and (max-width: 400px) {
     .char-form-container {
         max-width: 280px;
@@ -115,13 +227,9 @@ input#id_intelligence {
         align-items: center;
     }
 
+
     .faction-img {
         max-width: 180px;
         align-self: center;
     }
-}
-
-.info-container {
-    float: right;
-    margin-left: 20px; /* Adjust the margin as needed */
 }
