@@ -10,14 +10,11 @@
     margin-top: 70px;
     align-items: center;
     justify-content: center;
-    /* min-height: 100vh; */
 }
 
 .avatar-card {
-    /* background-color: #b6b6b6eb; */
     border: 1px solid #e8d9aad8;
     background-color: #e8d8aa82;
-    /* background-image: url('/static/images/stone-wall2.png'); */
     box-shadow: 0 0 8px 8px rgb(58 36 0 / 60%) inset;
     background-size: cover;
     background-repeat: no-repeat;
