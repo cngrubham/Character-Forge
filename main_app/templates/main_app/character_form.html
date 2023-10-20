@@ -16,7 +16,7 @@
             {{ form.as_p }}
             
             <div class="gender-image-container">
-                <img src="" alt="Gender Image" id="gender-image" class="gender-image">
+                <img src="{% static 'images/dragonborn.png' %}" alt="Gender Image" id="gender-image" class="gender-image">
             </div>
             <div class="dice-container">
                 <p>Roll the dice for your character stats!</p>
@@ -110,7 +110,7 @@
         'Elf-F': '{% static "images/elf.png" %}',
         'Gnome-M': '{% static "images/gnome.webp" %}',
         'Gnome-F': '{% static "images/gnome-female.jpeg" %}',
-        'Half-elf-M': '{% static "images/half-elf.jpeg" %}',
+        'Half-elf-M': '{% static "images/half-elf-male.png" %}',
         'Half-elf-F': '{% static "images/half-elf.jpeg" %}',
         'Half-orc-M': '{% static "images/Half_Orc_male.webp" %}',
         'Half-orc-F': '{% static "images/half-orc-female.jpeg" %}',
@@ -173,8 +173,10 @@
             const genderImageUrl = GENDER_IMAGE_URLS[selectedGender];
             genderImageElement.src = genderImageUrl;
             console.log(selectedGender)
-    });
 
+        
+        });
+       
         function fetchAlignmentData(alignment_name) {
             console.log("Fetching alignment data...");
             alignment_name = alignment_name.toLowerCase().replace(" ", "-");

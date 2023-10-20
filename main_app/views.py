@@ -20,7 +20,7 @@ GENDER_IMAGE_URLS = {
     'Elf-F': 'images/elf.png',
     'Gnome-M': 'images/gnome.webp',
     'Gnome-F': 'images/gnome-female.jpeg',
-    'Half-elf-M': 'images/half-elf.jpeg',
+    'Half-elf-M': 'images/half-elf-male.png',
     'Half-elf-F': 'images/half-elf.jpeg',
     'Half-orc-M': 'images/Half_Orc_male.webp',
     'Half-orc-F': 'images/half-orc-female.jpeg',
