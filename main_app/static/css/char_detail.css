@@ -2,17 +2,42 @@
     background-image: url('/static/images/tavern2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    padding-top: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    height: 100vh;
     text-align: center;
+}
+
+.character-info-container {
+    display: flex;
+    max-width: 80%;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.additional-details {
+    background-color: #ffffff8d;
+    text-align: center;
+    padding: 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+    font-weight: 800;
+}
+
+.internal-box {
+    background-color: rgba(255, 255, 255, 0.787);
+    padding: 10px;
 }
 
 .content-container-char {
     display: flex;
+    flex: 1.5;
     justify-content: space-between;
 }
 
@@ -23,7 +48,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff77;
+    background-color: #ffffff8d;
     padding: 20px 40px 20px 20px;
 }
 
@@ -34,7 +59,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff77;
+    background-color: #ffffff8d;
     padding: 20px 20px 20px 40px;
 }
 
@@ -78,6 +103,7 @@
 .character-info {
     list-style: none;
     padding: 0;
+    font-weight: 800;
 }
 
 .stats-list {
@@ -87,9 +113,12 @@
 
 }
 
+.character-actions {
+    margin-top: 40px;
+}
+
 .edit-link,
 .delete-link {
-
     background-color: #6d071a;
     color: #fff;
     padding: 10px 20px;
@@ -99,9 +128,17 @@
     transition: background-color 0.3s;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1370px) {
     .content-container-char {
         flex-direction: column;
+    }
+
+    .character-details-title {
+        padding-top: 100px;
+    }
+
+    .page-container-char {
+        height: 100%;
     }
 
     .left-column-char,
@@ -110,5 +147,11 @@
         text-align: center;
         align-items: center;
         justify-content: center;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .character-info-container {
+        flex-direction: column;
     }
 }

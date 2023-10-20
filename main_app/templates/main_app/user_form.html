@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="form-page-container">
+
 {% if object %}
 <h1 class="form-page-title">Edit <span>
         {{ object.name }}</span></h1>
 {% else %}
 <h1 class="form-page-title">Add User</h1>
 {% endif %}
-<div style="font-family: 'Philosopher', sans-serif; font-weight: bold; width: 80%;" class="char-form-container container">
-    <div class="card">
+<div class="user-form-page-container">
+<div style="font-family: 'Philosopher', sans-serif; font-weight: bold;" class="user-form-container container">
+    <div class="char-form-elements-column">
         <div class="card-content">
             <form action="" method="POST">
                 {% csrf_token %}
@@ -55,6 +57,7 @@
 
 </form>
 </div>
+    </div>
 <script>
     
     // This code ensures that the image for 
