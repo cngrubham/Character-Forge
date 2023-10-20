@@ -57,6 +57,8 @@
 </div>
 <script>
     
+    // This code ensures that the image for 
+    // the default value is displayed upon load of the form.
     document.addEventListener("DOMContentLoaded", function() {
         const dropdown = document.getElementById('id_avatar'); 
         const selectedValue = dropdown.value;
@@ -77,6 +79,8 @@
     
     });
 
+    // This code changes the displayed image, 
+    // based on the user selection in the dropdown.
     document.querySelector('#id_avatar').addEventListener('change', function() {
         // Get the selected value
         const selectedValue = this.value;
