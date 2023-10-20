@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load custom_filters %}
+<div class="page-container-prof">
+    <div class="user-details-container">
+        <div class="avatar-card">
+            <img class="user-avatar" src="{{ avatar_url }}" alt="User Avatar">
+            <h3>{{ avatar_name }}</h3>
+        </div>
+        <div class="right-side-profile">
+            <div class="user-details-card">
+                <div class="user-info-container">
+                    <h1>{{ user.name }}</h1>
+                    <h3>{{ user.email }}</h1>
+                </div>
+            </div>
+            <div class="user-actions">
+                <a class="user-action-button" href="{% url 'update_user' user.id %}"><i
+                        class="fas fa-edit"></i>&nbsp&nbsp Edit Profile</a>
+                <a class="user-action-button" href="{% url 'delete_user' user.id %}"><i
+                        class="fa-solid fa-trash"></i>&nbsp&nbsp Delete Account</a>
+            </div>
+            <a class="char-create-btn" href="{% url 'character_create' user_id=user.id %}">Create
+                a New Character</a>
+        </div>
+
+    </div>
+    <div class="user-characters-container">
+        <h2 class="characters-title">Characters Created by {{ user.name }}</h2>
+        <div class="character-grid">
+            {% for character in user.character_set.all %}
+            <div class="character-card">
+                <div class="char-card-details">
+                    <div class="character-card-info">
+                        <p class="char-name">{{ character.name }}</p>
+                        <p class="char-race">{{ character.race }}</p>
+                    </div>
+                    <div class="character-card-image">
+                        {% with character_gender_image=character.gender|gender_image_url %}
+                        <img class="character-image"
+                            src="{% if character.gender != 'URL_FOR_DEFAULT_IMAGE' %}{% static character_gender_image %}{% else %}{% static 'images/default_image.png' %}{% endif %}"
+                            alt="{{ character.gender }}">
+                    </div>
+                    {% endwith %}
+                </div>
+                <button class="character-detail-btn"><a href="{% url 'detail' character.id %}">View Character
+                    </a></button>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

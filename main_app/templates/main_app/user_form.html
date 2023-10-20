@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="form-page-container">
+
+{% if object %}
+<h1 class="form-page-title">Edit <span>
+        {{ object.name }}</span></h1>
+{% else %}
+<h1 class="form-page-title">Add User</h1>
+{% endif %}
+<div class="user-form-page-container">
+<div style="font-family: 'Philosopher', sans-serif; font-weight: bold;" class="user-form-container container">
+    <div class="char-form-elements-column">
+        <div class="card-content">
+            <form action="" method="POST">
+                {% csrf_token %}
+                
+    <table>
+        <tr>
+            <td><label for="{{ form.name.id_for_label }}" class="form-label">{{ form.name.name|capfirst }}:</label></td>
+            <td>{{ form.name }}</td>
+        </tr>
+        <tr>
+            <td><label for="id_{{ form.email.name }}" class="form-label">{{ form.email.name|capfirst }}:</label></td>
+            <td>{{ form.email }}</td>
+        </tr>
+        <tr>
+            <td><label for="id_{{ form.password.name }}" class="form-label">{{ form.password.name|capfirst }}:</label></td>
+            {% if object %}
+                <td><input type="password" name="{{ form.password.name }}" id="{{ form.password.id }}" value="{{ form.password.value }}"></tr></td>
+            {% else %}
+                <td>{{ form.password }}</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td><label for="id_{{ form.avatar.name }}" class="form-label">{{ form.avatar.name|capfirst }}:</label></td>
+            <td>
+                <select name="{{ form.avatar.name }}" 
+                id="id_{{ form.avatar.name }}">
+                    {% for choice in form.avatar.field.choices %}
+                        <option value="{{choice.0}}" {% if choice.1 == form.avatar.value %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>       
+                </table>
+                <br>
+                <div style="text-align: center;">
+    <input type="submit" value="Submit!" class="btn waves-effect waves-light red accent-4">
+                <br>
+            </div>
+    {% for faction, url in faction_urls %}
+        <div>
+            <img class="faction-img" src="{{ url }}" alt="{{ faction }}" style="display: none">
+        </div>
+    {% endfor %}
+
+</form>
+</div>
+    </div>
+<script>
+    
+    // This code ensures that the image for 
+    // the default value is displayed upon load of the form.
+    document.addEventListener("DOMContentLoaded", function() {
+        const dropdown = document.getElementById('id_avatar'); 
+        const selectedValue = dropdown.value;
+
+        console.log(selectedValue);
+
+        // Hide all images initially
+        document.querySelectorAll('img').forEach(function(img) {
+            img.style.display = 'none';
+        });
+
+        // Show the image with the matching alt value
+        const matchingImage = document.querySelector('img[alt="' + selectedValue + '"]');
+        
+        if (matchingImage) {
+            matchingImage.style.display = 'block';
+        }
+    
+    });
+
+    // This code changes the displayed image, 
+    // based on the user selection in the dropdown.
+    document.querySelector('#id_avatar').addEventListener('change', function() {
+        // Get the selected value
+        const selectedValue = this.value;
+    
+        // Hide all images initially
+        document.querySelectorAll('img').forEach(function(img) {
+            img.style.display = 'none';
+        });
+    
+        // Show the image with the matching value
+        document.querySelector('img[alt="' + selectedValue + '"]').style.display = 'block';
+    });
+
+</script>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character Forge</title>
-</head>
-<body>
-    <h1>Welcome to the Character Forge!</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="page-container">
+    <h1 class="page-title">
+        Character Forge
+    </h1>
+    <h3>
+        Welcome to the Dungeon</h3>
+    <ul>
+        <li><a class="btn waves-effect waves-light red accent-4" href="{% url 'create_user' %}">New User</a></li>
+    </ul>
+    <div>
+        <img class="rotate-center small-d20" src="{% static 'images/d20.png' %}">
+    </div>
+</div>
+
+{% endblock %}

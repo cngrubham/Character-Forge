@@ -1,0 +1,235 @@
+.form-page-container {
+    background-image: url('/static/images/scroll.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.char-form-page-container {
+    background-image: url('/static/images/scroll.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.user-form-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.user-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.card-content {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.char-form-container {
+    display: flex;
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 20px;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+
+.form-elements-column {
+    border: 1px solid #e8d9aad8;
+    background-color: #e8d9aa8b;
+    display: flex;
+    justify-content: center;
+}
+
+.fill-in-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-container {
+    flex: .75;
+    background-color: #872206d1;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 650px;
+    width: 400px;
+    padding: 20px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.info-container h3 {
+    font-size: 25px;
+    font-weight: 800;
+    font-family: 'Philosopher', sans-serif;
+    text-align: center;
+}
+
+.info-container p {
+    font-size: 20px;
+}
+
+.faction-img {
+    padding: 20px;
+    max-height: 400px;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+.form-page-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 800;
+    font-size: 40px;
+    color: black;
+    text-align: center;
+    padding-top: 60px;
+    text-shadow: -1px -1px 5px #fff, 1px -1px 5px #fff, -1px 1px 5px #fff, 1px 1px 5px #fff;
+}
+
+.center-align-dice {
+    text-align: center;
+}
+
+.btn {
+    background-color: #c00606;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+.btn:hover {
+    background-color: #870606;
+
+}
+
+.gender-image-container {
+    height: 200px;
+    width: 150px;
+    background-color: white;
+}
+
+.gender-image-container img {
+    height: 200px;
+    width: 150px;
+}
+
+#generate-stats {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.input-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.input-col {
+    flex: 0 0 calc(33.33% - 10px);
+    margin-bottom: 10px;
+}
+
+.input-col label {
+    display: block;
+    font-weight: bold;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.input-col input {
+    width: calc(100% - 110px);
+}
+
+.char-form-column {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.char-form-elements-column {
+    /* width: 100%; */
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #e8d9aad8;
+    background-color: #e8d9aa8b;
+    border-radius: 5px;
+    flex: 1;
+}
+
+form.char-form-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input#id_strength,
+input#id_constitution,
+input#id_dexterity,
+input#id_charisma,
+input#id_wisdom,
+input#id_intelligence {
+    width: 20px;
+    padding: 5px;
+    text-align: center;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 850px) {
+    .char-form-container {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info-container {
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .char-form-elements-column {
+        max-width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+    .char-form-container {
+        max-width: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .faction-img {
+        max-width: 180px;
+        align-self: center;
+    }
+}

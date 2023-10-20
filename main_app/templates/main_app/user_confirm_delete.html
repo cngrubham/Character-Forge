@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="background-dragon">
+
+
+  <div class="centered-container">
+    <h1 class="delete-title">Delete User Profile</h1>
+
+    <h4 class="delete-message">Are you sure you want to delete <span>{{ object.name }}</span>? </br> You won't be able
+      to recover your characters.</h4>
+
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Delete!" class="btn delete-btn">
+    </form>
+    <a href="{% url 'user_detail' user.id %}" class="cancel-link">Cancel</a>
+  </div>
+  {% endblock %}
+</div>

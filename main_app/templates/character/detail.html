@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load custom_filters %}
+<div class="page-container-char">
+    <h1 class="character-details-title">Character Details</h1>
+    <div class="character-info-container">
+        <div class="content-container-char">
+            <div class="left-column-char">
+                <h3 class="character-name" style="font-family: 'Philosopher', sans-serif;">{{ character.name }}</h3>
+
+                {% load static %}
+
+                <ul class="character-details-list">
+
+                    <li>
+                        {% with character_gender_image=character.gender|gender_image_url %}
+                        <img class="character-image"
+                            src="{% if character.gender != 'URL_FOR_DEFAULT_IMAGE' %}{% static character_gender_image %}{% else %}{% static 'images/default_image.png' %}{% endif %}"
+                            alt="{{ character.gender }}" width="100" height="100">
+                        {% endwith %}
+                    </li>
+            </div>
+            <div class="right-column-char">
+                <li class="character-info" id="char_race" data-race="{{ character.race }}">
+                    Race: {{ character.race }}
+                </li>
+                <li class="character-info" id="char_alignment" data-alignment="{{ character.alignment }}">
+                    Alignment: {{ character.alignment }}
+                </li>
+                <li class="character-info">
+
+                    Level: {{ character.level }}
+                </li>
+                <li class="character-info">
+                    Experience: {{ character.exp }}
+
+                </li>
+                <li class="character-info">
+                    <h3 style="font-family: 'Philosopher', sans-serif;">Stats</h3>
+                    <ul class="stats-list">
+                        <li>Strength: {{ character.strength }}</li>
+                        <li>Constitution: {{ character.constitution }}</li>
+                        <li>Dexterity: {{ character.dexterity }}</li>
+                        <li>Charisma: {{ character.charisma }}</li>
+                        <li>Wisdom: {{ character.wisdom }}</li>
+                        <li>Intelligence: {{ character.intelligence }}</li>
+                    </ul>
+                </li>
+                </ul>
+
+                <div class="character-actions">
+                    <a class="edit-link" href="{% url 'update_character' character.id %}"><i
+                            class="fas fa-edit"></i>&nbsp&nbsp
+                        Edit</a>
+                    <a class="delete-link" href="{% url 'delete_character' character.id %}"><i
+                            class="fa-solid fa-trash"></i>&nbsp&nbsp
+                        Delete</a>
+                </div>
+            </div>
+        </div>
+        <div class="additional-details">
+            <div class="internal-box">
+                <p id="alignment-name"></p>
+                <p id="alignment-desc"></p>
+                <p id="race-name"></p>
+                <p id="race-align"></p>
+                <p id="race-lang"></p>
+                <p id="race-traits"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const charRaceElement = document.querySelector("#char_race");
+        const charAlignmentElement = document.querySelector("#char_alignment");
+
+
+        const race = charRaceElement.getAttribute("data-race");
+        const alignment = charAlignmentElement.getAttribute("data-alignment");
+        fetchRaceData(race);
+        fetchAlignmentData(alignment);
+
+    });
+
+    function fetchAlignmentData(alignment_name) {
+        console.log("Fetching alignment data...");
+        alignment_name = alignment_name.toLowerCase().replace(" ", "-");
+        const url = `https://www.dnd5eapi.co/api/alignments/${alignment_name}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const alignmentNameElement = document.querySelector("#alignment-name");
+                const alignmentDescElement = document.querySelector("#alignment-desc");
+
+                alignmentNameElement.textContent = data.name;
+                alignmentDescElement.textContent = data.desc;
+            })
+            .catch(error => {
+                console.error("Error fetching alignment data: ", error);
+            });
+    }
+
+    function fetchRaceData(race_name) {
+        console.log("Fetching race data..." + race_name);
+        race_name = race_name.toLowerCase().replace(" ", "-");
+        const url = `https://www.dnd5eapi.co/api/races/${race_name}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const raceNameElement = document.querySelector("#race-name");
+                const raceAlignElement = document.querySelector("#race-align");
+                const raceLangElement = document.querySelector("#race-lang");
+                const raceTraitsElement = document.querySelector("#race-traits");
+
+                raceNameElement.textContent = data.name;
+                raceAlignElement.textContent = data.alignment;
+                raceLangElement.textContent = data.language_desc;
+
+                raceTraitsElement.textContent = "";
+
+                if (data.traits) {
+                    const traits = data.traits.map(trait => trait.name);
+                    raceTraitsElement.textContent = traits.join(', '); // Display traits as a comma-separated list
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching race data: ", error);
+            });
+    }
+
+
+
+</script>
+
+
+
+{% endblock %}

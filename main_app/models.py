@@ -3,27 +3,57 @@ from django.urls import reverse
 
 # Create your models here.
 
+FACTION_CHOICES = (
+    ('Harpers', 'Harpers'),
+    ('Order of the Gauntlet', 'Order of the Gauntlet'),
+    ('Emerald Enclave', 'Emerald Enclave'),
+    ('Lord''s Alliance', 'Lord''s Alliance'),
+    ('Zhentarim', 'Zhentarim')
+)
+
+FACTION_URLS = (
+    ('Harpers', 'https://www.dndbeyond.com/attachments/thumbnails/5/924/290/504/br-harpers.png'),
+    ('Order of the Gauntlet', 'https://www.dndbeyond.com/attachments/thumbnails/5/928/290/504/br-orderofthegauntlet.png'),
+    ('Emerald Enclave', 'https://www.dndbeyond.com/attachments/thumbnails/5/925/290/504/br-emeraldenclave.png'),
+    ('Lord''s Alliance', 'https://www.dndbeyond.com/attachments/thumbnails/5/926/290/504/br-lordsalliance.png'),
+    ('Zhentarim', 'https://www.dndbeyond.com/attachments/thumbnails/5/927/290/504/br-zhentarim.png')
+)
+
 class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     password = models.CharField(max_length=20)
-    avatar = models.CharField(max_length=100)
-
+    avatar = models.CharField(
+        max_length=25,
+        choices=FACTION_CHOICES,
+        default=FACTION_CHOICES[0][0])
+    
+    def __str__(self):
+        return f'{self.name} ({self.id})'
+    
+    def get_absolute_url(self):
+        return reverse('user_detail', kwargs={'user_id': self.id})
+    
 class Character(models.Model):
     name = models.CharField(max_length=100)
     picURL = models.CharField(max_length=500)
-    race = models.CharField(max_length=20)
+    race = models.CharField(max_length=100)
+    gender = models.CharField(max_length=100, default='Male')
     alignment = models.CharField(max_length=20)
     level = models.IntegerField(default=1)
-    exp = models.IntegerField(default=1)
-    strength = models.IntegerField
-    constitution = models.IntegerField
-    dexterity = models.IntegerField
-    charisma = models.IntegerField
-    wisdom = models.IntegerField
-    intelligence = models.IntegerField
+    exp = models.IntegerField(default=0)
+    strength = models.IntegerField()
+    constitution = models.IntegerField()
+    dexterity = models.IntegerField()
+    charisma = models.IntegerField()
+    wisdom = models.IntegerField()
+    intelligence = models.IntegerField()
 
     # User foreign key
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return f'{self.name} ({self.id})'
 
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'character_id': self.id})

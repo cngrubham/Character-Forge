@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Character Forge</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/delete_confirm.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_detail.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/char_detail.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+    
+    <script src="https://kit.fontawesome.com/394202d38e.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;800&family=Philosopher&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/d20.png' %}">
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" style="background-color: rgb(69, 24, 24);">
+            <ul>
+                <li><a href="{% url 'home' %}">Character Forge</a></li>
+            </ul>
+            <ul class="right">
+                <li><a href="{% url 'user_index' %}">User List</a></li>
+                <li><a href="{% url 'create_user' %}">New User</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+
+
+</body>
+
+</html>
