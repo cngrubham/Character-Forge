@@ -21,10 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cz@pt@qmf&aqn8$y9&1#+s346#!p6!=&&rpoz^&mso(yg237d^'
+# SECRET_KEY = 'django-insecure-cz@pt@qmf&aqn8$y9&1#+s346#!p6!=&&rpoz^&mso(yg237d^'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.environ['MODE'] == 'dev' else False
 
 ALLOWED_HOSTS = []
 
@@ -78,7 +79,11 @@ WSGI_APPLICATION = 'characterforge.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'characterforge',
+        'NAME': 'neondb',
+        'USER': 'cngrubham',
+        'PASSWORD': os.environ['DB_PASSWORD'],
+        'HOST': 'ep-tight-pond-27859956.us-west-2.aws.neon.tech',
+        'PORT': '5432',
     }
 }
 
@@ -126,3 +131,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import django_on_heroku
+django_on_heroku.settings(locals())
