@@ -49,6 +49,9 @@ def dice_roll():
 def home(request):
   return render(request, 'home.html')
 
+def dice(request):
+  return render(request, 'dice.html')
+
 def user_login(request):
     return render(request, 'user/login.html')
 

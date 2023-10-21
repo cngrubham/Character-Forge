@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="dice-page-container">
+    <div class="dice-roll-container">
+        <h1>Dice Roll</h1>
+        <p class="result-message" id="result"></p>
+        <p class="dice-instruct">Click Dice to Roll</p>
+
+        <div class="dice-wrapper">
+            <div class="dice-image-container">
+                <img src="/static/images/d4.png" alt="d4" class="dice-image d4" onclick="rollDice(4)">
+            </div>
+            <div class="dice-image-container">
+                <img src="/static/images/d6.png" alt="d6" class="dice-image d6" onclick="rollDice(6)">
+            </div>
+            <div class="dice-image-container">
+                <img src="/static/images/d8.png" alt="d8" class="dice-image d8" onclick="rollDice(8)">
+            </div>
+            <div class="dice-image-container">
+                <img src="/static/images/d10.png" alt="d10" class="dice-image d10" onclick="rollDice(10)">
+            </div>
+            <div class="dice-image-container">
+                <img src="/static/images/d12.png" alt="d12" class="dice-image d12" onclick="rollDice(12)">
+            </div>
+            <div class="dice-image-container">
+                <img src="/static/images/d20.png" alt="d20" class="dice-image d20" onclick="rollDice(20)">
+            </div>
+            <div class="dice-image-container">
+                <img src="/static/images/dpercent.png" alt="dpercent" class="dice-image dpercent"
+                    onclick="rollDice(10)">
+            </div>
+            <div class="dice-image-container">
+                <img src="/static/images/d100.png" alt="d100" class="dice-image d100" onclick="rollDice(100)">
+            </div>
+            <div class="dice-image-container">
+                <img src="/static/images/dcoin.png" alt="dcoin" class="dice-image dcoin" onclick="rollDice(2)">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function rollDice(sides) {
+        const resultElement = document.getElementById("result");
+        const diceImage = event.target;
+
+        const isCoinDie = diceImage.classList.contains("dcoin");
+
+        if (isCoinDie) {
+            diceImage.classList.add("flip");
+
+        } else {
+            diceImage.classList.add("spin");
+        }
+
+        setTimeout(function () {
+            const result = Math.floor(Math.random() * sides);
+
+            let message;
+
+            if (isCoinDie) {
+                message = `The coin flip was ${result === 1 ? "Heads" : "Tails"}!`;
+                diceImage.classList.remove("flip");
+
+            } else if (diceImage.classList.contains("dpercent")) {
+                message = `You rolled ${result * 10}% on the percent die!`;
+
+            } else {
+                message = (result === 20) ? "Nat 20! Critical Success!" : `You rolled a ${result} on the ${sides} sided dice!`;
+            }
+
+            resultElement.textContent = message;
+
+            if (!isCoinDie) {
+                diceImage.classList.remove("spin");
+            }
+        }, 1000);
+    }
+
+</script>
+
+{% endblock %}

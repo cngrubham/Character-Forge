@@ -1,0 +1,154 @@
+.dice-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.dice-roll-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.dice-roll-container h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 0;
+    font-family: 'Philosopher', sans-serif;
+}
+
+.dice-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}
+
+.dice-image {
+    cursor: pointer;
+    max-width: 100%;
+}
+
+.dice-image:hover {
+    opacity: 0.6;
+}
+
+.result-message {
+    padding: 2px 25px;
+    color: black;
+    font-size: 1.75em;
+    height: 150px;
+    width: 65%;
+    text-align: center;
+    background-image: url('/static/images/paper-banner1.png');
+    background-size: 100% 170px;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dice-instruct {
+    color: white;
+    font-size: 20px;
+    margin: 0;
+}
+
+.d4 {
+    width: 165px;
+}
+
+.d6 {
+    width: 160px;
+}
+
+.d8 {
+    width: 165px;
+}
+
+.d10 {
+    width: 210px;
+}
+
+.d12 {
+    width: 215px;
+}
+
+.d20 {
+    width: 150px;
+}
+
+.d100 {
+    width: 150px;
+}
+
+.dcoin {
+    width: 150px;
+}
+
+.dpercent {
+    width: 150px;
+}
+
+
+@media screen and (max-width: 769px) {
+    .d4 {
+        width: 110px;
+    }
+
+    .d6 {
+        width: 112px;
+    }
+
+    .d8 {
+        width: 116px;
+    }
+
+    .d10 {
+        width: 140px;
+    }
+
+    .d12 {
+        width: 150px;
+    }
+
+    .d20 {
+        width: 105px;
+    }
+
+    .d100 {
+        width: 105px;
+    }
+
+    .dcoin {
+        width: 105px;
+    }
+
+    .dpercent {
+        width: 105px;
+    }
+}
+
+.flip {
+    animation: flip 1s ease-in-out;
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}

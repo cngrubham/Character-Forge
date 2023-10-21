@@ -8,10 +8,12 @@
     <h3>
         Welcome to the Dungeon</h3>
     <ul>
-        <li><a class="btn waves-effect waves-light red accent-4" href="{% url 'create_user' %}">New User</a></li>
+        <li><a class="btn my-button" href="{% url 'create_user' %}">New User</a></li>
     </ul>
     <div>
-        <img class="rotate-center small-d20" src="{% static 'images/d20.png' %}">
+        <a class="d20-link" href="{% url 'dice' %}">
+            <img class="rotate-center small-d20" src="{% static 'images/d20.png' %}">
+        </a>
     </div>
 </div>
 

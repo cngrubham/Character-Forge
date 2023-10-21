@@ -32,13 +32,18 @@
     margin-bottom: 10px;
 }
 
-.page-container a {
+.my-button {
     text-decoration: none;
     display: inline-block;
     padding: 10px 20px;
     background-color: red;
     color: white;
     border-radius: 5px;
+}
+
+.d20-link {
+    background-color: none;
+
 }
 
 .small-d20 {
