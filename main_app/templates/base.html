@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dice.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/delete_confirm.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/user_index.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
@@ -18,8 +19,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/char_detail.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
-    
+
+
     <script src="https://kit.fontawesome.com/394202d38e.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;800&family=Philosopher&display=swap"
         rel="stylesheet">
@@ -32,10 +33,13 @@
         <nav class="navbar" style="background-color: rgb(69, 24, 24);">
             <ul>
                 <li><a href="{% url 'home' %}">Character Forge</a></li>
+
             </ul>
             <ul class="right">
                 <li><a href="{% url 'user_index' %}">User List</a></li>
                 <li><a href="{% url 'create_user' %}">New User</a></li>
+                <li><a href="{% url 'dice' %}">Roll Dice</a>
+                </li>
             </ul>
         </nav>
     </header>

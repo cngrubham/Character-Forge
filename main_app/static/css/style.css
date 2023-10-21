@@ -3,6 +3,7 @@ html {
     margin: 0;
     padding: 0;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -12,6 +13,7 @@ body {
     background-size: cover;
     height: 100%;
 }
+
 .navbar {
     background-color: rgb(69, 24, 24);
     position: fixed;
@@ -19,6 +21,7 @@ body {
     width: 100%;
     z-index: 999;
 }
+
 .navbar ul:first-child {
     float: left;
 }
@@ -26,6 +29,7 @@ body {
 .navbar ul:not(:first-child) {
     float: right;
 }
+
 .navbar ul {
     list-style: none;
     padding: 0;
@@ -93,8 +97,9 @@ body {
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
     .navbar li {
-        font-size: 12px;
+        font-size: 10px;
+        margin: 0 10px;
     }
 }
