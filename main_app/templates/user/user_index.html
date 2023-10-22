@@ -4,17 +4,26 @@
 {% block content %}
 <div class="user-page-container">
     <h1>User List</h1>
+    <ul class="list-label">
+        <li>User Name</li>
+        <li>Email</li>
+    </ul>
     <div class="user-grid">
         {% for user in users %}
         <div class="user-card">
-            <a href="{% url 'user_detail' user.id %}" class="action-button details-button">Details &nbsp&nbsp<i class="fas fa-info-circle"></i></a>
+            <img class="user-card-image" src="{% static 'images/paper-banner.png' %}">
+            <div class="button-box"><a href="{% url 'user_detail' user.id %}" class="action-button details-button"><i
+                        class="fas fa-info-circle"></i></a>
+            </div>
             <div class="user-info">
                 <span class="user-name">{{ user.name }}</span>
                 <span class="user-email">{{ user.email }}</span>
             </div>
-            <div class="user-actions">
-                <a href="{% url 'update_user' user.id %}" class="action-button edit-button"><i class="fas fa-edit"></i></a>
-                <a href="{% url 'delete_user' user.id %}" class="action-button delete-button"><i class="fa-solid fa-trash"></i></a>
+            <div class="user-index-actions">
+                <a href="{% url 'update_user' user.id %}" class="action-button edit-button"><i
+                        class="fas fa-edit"></i></a>
+                <a href="{% url 'delete_user' user.id %}" class="action-button delete-button"><i
+                        class="fa-solid fa-trash"></i></a>
             </div>
         </div>
         {% endfor %}
